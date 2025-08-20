@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +120,7 @@
             backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--glass-border);
             box-shadow: var(--shadow-glow);
-            padding: 0.7rem 0;
+            padding: 0.5rem 0;
             position: relative;
         }
 
@@ -143,7 +142,7 @@
 
         .navbar-brand {
             font-weight: 800;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
             background-size: 200% 200%;
             -webkit-background-clip: text;
@@ -163,30 +162,32 @@
             transform: scale(1.03);
         }
 
-        /* Language Switcher Buttons */
+        /* Language Switcher - Fully Responsive */
         .language-switcher {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .lang-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-primary);
-            padding: 8px 12px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 15px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(15px);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
 
         .lang-btn::before {
@@ -215,25 +216,26 @@
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
             color: var(--bg-dark);
             border-color: var(--primary-neon);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            transform: scale(1.02);
         }
 
         .lang-btn.active:hover {
             color: var(--bg-dark);
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
-        /* CORRECT Flag Styles */
+        /* CORRECT Flag Styles - Responsive */
         .nexus-flag {
-            width: 20px;
-            height: 14px;
-            border-radius: 3px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            width: 18px;
+            height: 12px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         /* Indonesia Flag - Red top, White bottom */
@@ -253,7 +255,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffff00;
-            font-size: 9px;
+            font-size: 7px;
             font-weight: bold;
             text-shadow: 0 0 2px rgba(255, 255, 0, 0.8);
         }
@@ -271,45 +273,38 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 7px 0 7px 10px;
+            border-width: 6px 0 6px 8px;
             border-color: transparent transparent transparent #ffffff;
         }
 
-        /* UK Flag - CORRECTED Union Jack using image */
-        .flag-en {
-            background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3a745d9b-b2b9-4c0a-9aa6-cdfafa371251.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
         .nexus-flag:hover {
-            transform: scale(1.1) rotateY(10deg);
-            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 3px 8px rgba(0, 255, 136, 0.3);
         }
 
         /* Language Switching Animation */
         .lang-switch {
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .lang-switch.switching {
             opacity: 0;
-            transform: translateY(-30px) scale(0.95);
+            transform: translateY(-20px);
         }
 
-        /* Advanced Cards */
+        /* Advanced Cards - Mobile Optimized */
         .nexus-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-glow);
+            margin-bottom: 1rem;
         }
 
         .nexus-card::before {
@@ -319,33 +314,12 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .nexus-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon), var(--cyan-neon));
-            background-size: 400% 400%;
-            border-radius: 16px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: borderGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.08), transparent);
+            transition: left 0.6s ease;
         }
 
         .nexus-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-3px);
             border-color: var(--border-glow);
             box-shadow: var(--shadow-glow), var(--shadow-large);
         }
@@ -354,27 +328,23 @@
             left: 100%;
         }
 
-        .nexus-card:hover::after {
-            opacity: 0.6;
-        }
-
-        /* Advanced Metrics */
+        /* Responsive Metrics */
         .metric-display {
             text-align: center;
-            padding: 1.5rem 1rem;
+            padding: 1rem;
             position: relative;
         }
 
         .metric-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
-            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+            transition: all 0.3s ease;
             animation: iconShift 3s ease-in-out infinite alternate;
         }
 
@@ -384,21 +354,21 @@
         }
 
         .metric-display:hover .metric-icon {
-            transform: scale(1.15) rotateY(15deg);
-            filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8));
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.8));
         }
 
         .metric-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             background: linear-gradient(45deg, var(--primary-neon), #ffffff, var(--cyan-neon));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-            transition: all 0.4s ease;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
             line-height: 1.1;
             animation: valueGlow 2s ease-in-out infinite alternate;
         }
@@ -410,38 +380,33 @@
 
         .metric-label {
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             font-weight: 700;
+            margin-bottom: 0.2rem;
         }
 
-        /* Advanced Tooltip System */
+        /* Responsive Tooltip System */
         .holo-tooltip {
             position: absolute;
             bottom: 110%;
             left: 50%;
             transform: translateX(-50%) scale(0);
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.95), rgba(0, 128, 255, 0.95), rgba(138, 43, 226, 0.95));
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.95), rgba(0, 128, 255, 0.95));
             color: var(--bg-dark);
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.75rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-weight: 700;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
-            backdrop-filter: blur(15px);
-            animation: tooltipGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes tooltipGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+            backdrop-filter: blur(10px);
+            max-width: 250px;
         }
 
         .holo-tooltip::after {
@@ -450,7 +415,7 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border: 8px solid transparent;
+            border: 6px solid transparent;
             border-top-color: rgba(0, 255, 136, 0.95);
         }
 
@@ -458,21 +423,22 @@
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) scale(1) translateY(-5px);
+            white-space: normal;
         }
 
-        /* Advanced Status Badges */
+        /* Responsive Status Badges */
         .neon-badge {
             display: inline-flex;
             align-items: center;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.65rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         .neon-badge::before {
@@ -483,7 +449,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.5s ease;
         }
 
         .neon-badge:hover::before {
@@ -493,44 +459,44 @@
         .badge-success {
             background: linear-gradient(45deg, var(--primary-neon), #00cc66);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
         }
 
         .badge-danger {
             background: linear-gradient(45deg, var(--danger-neon), #ff6666);
             color: white;
-            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
         }
 
         .badge-warning {
             background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
-            animation: pulse-warning 2.5s infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
+            animation: pulse-warning 2s infinite;
         }
 
         @keyframes pulse-warning {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 0, 0.5); }
-            50% { box-shadow: 0 0 35px rgba(255, 255, 0, 0.9); }
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 0, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 255, 0, 0.7); }
         }
 
-        /* Advanced Flow Visualization */
+        /* Responsive Flow Visualization */
         .flow-container {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             position: relative;
         }
 
         .flow-step {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin: 0 auto 1rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+            margin: 0 auto 0.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
         }
@@ -538,13 +504,12 @@
         .flow-step::before {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -559,8 +524,8 @@
         .flow-step.completed {
             background: linear-gradient(45deg, var(--primary-neon), #00cc66);
             color: var(--bg-dark);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
-            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+            transform: scale(1.05);
         }
 
         .flow-step.completed::before {
@@ -571,8 +536,8 @@
         .flow-step.active {
             background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
             color: var(--bg-dark);
-            box-shadow: 0 0 25px rgba(255, 255, 0, 0.7);
-            animation: pulse-active 2.5s infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+            animation: pulse-active 2s infinite;
         }
 
         .flow-step.pending {
@@ -582,7 +547,7 @@
         }
 
         .flow-step:hover {
-            transform: scale(1.2) rotateY(15deg);
+            transform: scale(1.1);
         }
 
         @keyframes rotate {
@@ -592,23 +557,24 @@
 
         @keyframes pulse-active {
             0%, 100% { 
-                box-shadow: 0 0 25px rgba(255, 255, 0, 0.7);
+                box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
                 transform: scale(1.05);
             }
             50% { 
-                box-shadow: 0 0 40px rgba(255, 255, 0, 1);
-                transform: scale(1.15);
+                box-shadow: 0 0 30px rgba(255, 255, 0, 1);
+                transform: scale(1.1);
             }
         }
 
-        /* Advanced Progress Bars */
+        /* Responsive Progress Bars */
         .nexus-progress {
-            height: 10px;
-            border-radius: 10px;
+            height: 8px;
+            border-radius: 8px;
             background: var(--bg-darker);
             overflow: hidden;
-            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
+            margin-bottom: 0.5rem;
         }
 
         .nexus-progress::before {
@@ -628,74 +594,47 @@
         }
 
         .nexus-progress-bar {
-            border-radius: 10px;
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-        }
-
-        .nexus-progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progress-shine 2s ease-in-out infinite;
-        }
-
-        @keyframes progress-shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         .nexus-progress-bar.success {
-            background: linear-gradient(90deg, var(--primary-neon), #00cc66, var(--cyan-neon));
-            background-size: 200% 100%;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
-            animation: progressFlow 3s ease-in-out infinite;
+            background: linear-gradient(90deg, var(--primary-neon), #00cc66);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
         }
 
         .nexus-progress-bar.warning {
-            background: linear-gradient(90deg, var(--warning-neon), #ffcc00, #ffa500);
-            background-size: 200% 100%;
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
-            animation: progressFlow 3s ease-in-out infinite;
+            background: linear-gradient(90deg, var(--warning-neon), #ffcc00);
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
         }
 
         .nexus-progress-bar.info {
-            background: linear-gradient(90deg, var(--accent-neon), #00ccff, var(--purple-neon));
-            background-size: 200% 100%;
-            box-shadow: 0 0 15px rgba(0, 128, 255, 0.5);
-            animation: progressFlow 3s ease-in-out infinite;
+            background: linear-gradient(90deg, var(--accent-neon), #00ccff);
+            box-shadow: 0 0 10px rgba(0, 128, 255, 0.4);
         }
 
-        @keyframes progressFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Advanced Console */
+        /* Responsive Console */
         .nexus-console {
             background: linear-gradient(135deg, var(--bg-darker) 0%, rgba(0, 20, 40, 0.95) 100%);
             border: 1px solid var(--border-glow);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 0;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            height: 350px;
+            font-size: 0.75rem;
+            height: 300px;
             overflow: hidden;
             position: relative;
-            box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(0, 255, 136, 0.2);
+            box-shadow: var(--shadow-glow);
         }
 
         .console-header {
             background: linear-gradient(90deg, var(--bg-darker), rgba(0, 255, 136, 0.1), var(--bg-darker));
-            height: 40px;
+            height: 35px;
             display: flex;
             align-items: center;
-            padding: 0 1.2rem;
+            padding: 0 1rem;
             border-bottom: 1px solid var(--border-glow);
             position: relative;
         }
@@ -718,19 +657,15 @@
 
         .nexus-dots {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
         .nexus-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
+            box-shadow: 0 0 8px currentColor;
             transition: all 0.3s ease;
-        }
-
-        .nexus-dot:hover {
-            transform: scale(1.2);
         }
 
         .dot-red { 
@@ -755,198 +690,138 @@
         }
 
         .console-content {
-            padding: 1rem;
-            height: calc(100% - 40px);
+            padding: 0.8rem;
+            height: calc(100% - 35px);
             overflow-y: auto;
             color: var(--primary-neon);
-            line-height: 1.7;
+            line-height: 1.5;
             position: relative;
-        }
-
-        .console-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 255, 136, 0.02) 2px,
-                rgba(0, 255, 136, 0.02) 4px
-            );
-            pointer-events: none;
         }
 
         .log-timestamp { 
             color: var(--text-muted); 
-            font-size: 0.7rem; 
+            font-size: 0.65rem; 
             font-weight: 600;
         }
         .log-info { 
             color: var(--accent-neon); 
             font-weight: 700;
-            text-shadow: 0 0 5px currentColor;
+            text-shadow: 0 0 3px currentColor;
         }
         .log-success { 
             color: var(--primary-neon); 
             font-weight: 700;
-            text-shadow: 0 0 5px currentColor;
+            text-shadow: 0 0 3px currentColor;
         }
         .log-warning { 
             color: var(--warning-neon); 
             font-weight: 700;
-            text-shadow: 0 0 5px currentColor;
+            text-shadow: 0 0 3px currentColor;
         }
         .log-error { 
             color: var(--danger-neon); 
             font-weight: 700;
-            text-shadow: 0 0 5px currentColor;
+            text-shadow: 0 0 3px currentColor;
         }
 
-        /* Currency Badge Enhancement */
+        /* Responsive Currency Badge */
         .nexus-currency {
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
             color: var(--bg-dark);
-            padding: 0.4rem 0.8rem;
-            border-radius: 18px;
-            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 900;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
-            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            animation: currencyGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes currencyGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .nexus-currency:hover {
-            transform: scale(1.05) rotateZ(5deg);
-            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.6);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.5);
         }
 
-        /* Advanced Table */
+        /* Responsive Table */
         .nexus-table {
             color: var(--text-primary);
             background: transparent;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .nexus-table thead th {
             background: var(--glass-bg);
             border: none;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 0.8rem 0.5rem;
             color: var(--primary-neon);
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             position: relative;
         }
 
-        .nexus-table thead th::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
-        }
-
         .nexus-table tbody tr {
-            transition: all 0.4s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nexus-table tbody tr:hover {
-            background: rgba(0, 255, 136, 0.08);
-            transform: scale(1.01);
-            box-shadow: 0 3px 15px rgba(0, 255, 136, 0.15);
+            background: rgba(0, 255, 136, 0.05);
+            transform: scale(1.005);
         }
 
         .nexus-table tbody td {
             border: none;
-            padding: 1rem;
+            padding: 0.8rem 0.5rem;
             vertical-align: middle;
         }
 
-        /* Advanced Compliance Indicators */
+        /* Responsive Compliance Indicators */
         .nexus-indicator {
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             display: inline-block;
-            margin-right: 12px;
-            transition: all 0.4s ease;
+            margin-right: 8px;
+            transition: all 0.3s ease;
             position: relative;
-        }
-
-        .nexus-indicator::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, transparent, currentColor, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: indicatorRing 3s linear infinite;
-        }
-
-        @keyframes indicatorRing {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            flex-shrink: 0;
         }
 
         .indicator-compliant {
             background: var(--primary-neon);
-            color: var(--primary-neon);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
-            animation: compliant-pulse 4s infinite;
-        }
-
-        .indicator-compliant::before {
-            opacity: 1;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            animation: compliant-pulse 3s infinite;
         }
 
         .indicator-pending {
             background: var(--warning-neon);
-            color: var(--warning-neon);
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
-            animation: pending-pulse 2.5s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+            animation: pending-pulse 2s infinite;
         }
 
         .indicator-failed {
             background: var(--danger-neon);
-            color: var(--danger-neon);
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
         }
 
         @keyframes compliant-pulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.6); }
-            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 1); }
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.8); }
         }
 
         @keyframes pending-pulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 0, 0.6); }
-            50% { box-shadow: 0 0 30px rgba(255, 255, 0, 1); }
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); }
         }
 
-        /* Advanced Loading Animation */
+        /* Responsive Loading Animation */
         .nexus-loader {
-            height: 4px;
+            height: 3px;
             background: var(--bg-darker);
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
             position: relative;
         }
@@ -959,7 +834,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), transparent);
-            animation: nexus-load 2.5s ease-in-out infinite;
+            animation: nexus-load 2s ease-in-out infinite;
         }
 
         @keyframes nexus-load {
@@ -967,117 +842,114 @@
             100% { left: 100%; }
         }
 
-        /* Section Headers */
+        /* Responsive Section Headers */
         .section-header {
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            animation: headerGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes headerGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        /* Mobile-First Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
             .language-switcher {
-                gap: 6px;
+                gap: 4px;
             }
             
             .lang-btn {
-                padding: 6px 8px;
+                padding: 5px 8px;
                 font-size: 0.75rem;
+            }
+            
+            .metric-value {
+                font-size: 1.8rem;
+            }
+            
+            .metric-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .section-header {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.4rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            
+            .language-switcher {
+                gap: 3px;
+                flex-wrap: nowrap;
+            }
+            
+            .lang-btn {
+                padding: 4px 6px;
+                font-size: 0.7rem;
+                border-radius: 12px;
+                min-width: auto;
             }
             
             .lang-btn span {
                 display: none;
             }
             
-            .metric-display {
-                padding: 1rem 0.8rem;
-            }
-            
-            .metric-value {
-                font-size: 2rem;
-            }
-            
-            .metric-icon {
-                font-size: 2rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .flow-step {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .nexus-console {
-                height: 280px;
-                font-size: 0.75rem;
-            }
-            
-            .nexus-table {
-                font-size: 0.8rem;
-            }
-            
-            .nexus-table th,
-            .nexus-table td {
-                padding: 0.8rem 0.5rem;
-            }
-            
-            .holo-tooltip {
-                font-size: 0.7rem;
-                padding: 8px 12px;
-                white-space: normal;
-                max-width: 220px;
-            }
-            
-            .section-header {
-                font-size: 0.95rem;
-            }
-            
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-            
-            .nexus-card {
-                border-radius: 12px;
+            .nexus-flag {
+                width: 16px;
+                height: 11px;
+                margin-right: 0;
             }
             
             .container {
-                padding-left: 12px;
-                padding-right: 12px;
+                padding-left: 10px;
+                padding-right: 10px;
             }
             
-            .nexus-flag {
-                width: 18px;
-                height: 12px;
+            .metric-display {
+                padding: 0.8rem 0.5rem;
             }
-        }
-
-        @media (max-width: 576px) {
+            
             .metric-value {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .metric-icon {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .metric-label {
+                font-size: 0.65rem;
+                letter-spacing: 0.5px;
             }
             
             .flow-step {
                 width: 35px;
                 height: 35px;
                 font-size: 0.8rem;
+                margin-bottom: 0.6rem;
             }
             
             .nexus-console {
@@ -1086,45 +958,234 @@
             }
             
             .console-header {
-                height: 35px;
-                padding: 0 1rem;
+                height: 30px;
+                padding: 0 0.8rem;
+                font-size: 0.7rem;
             }
             
             .nexus-dot {
-                width: 9px;
-                height: 9px;
+                width: 8px;
+                height: 8px;
             }
             
-            .nexus-flag {
-                width: 16px;
-                height: 11px;
+            .nexus-table {
+                font-size: 0.75rem;
+            }
+            
+            .nexus-table th,
+            .nexus-table td {
+                padding: 0.6rem 0.3rem;
+            }
+            
+            .holo-tooltip {
+                font-size: 0.65rem;
+                padding: 6px 10px;
+                white-space: normal;
+                max-width: 200px;
+                bottom: 120%;
+            }
+            
+            .section-header {
+                font-size: 0.8rem;
+            }
+            
+            .nexus-card {
+                border-radius: 10px;
+                margin-bottom: 0.8rem;
             }
             
             .neon-badge {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+            
+            .nexus-currency {
                 font-size: 0.65rem;
-                padding: 0.3rem 0.6rem;
+                padding: 0.25rem 0.5rem;
             }
         }
 
-        /* Advanced Scroll Bar */
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+            
+            .lang-btn {
+                padding: 3px 5px;
+                font-size: 0.65rem;
+            }
+            
+            .nexus-flag {
+                width: 14px;
+                height: 9px;
+            }
+            
+            .container {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            
+            .metric-display {
+                padding: 0.6rem 0.4rem;
+            }
+            
+            .metric-value {
+                font-size: 1.4rem;
+            }
+            
+            .metric-icon {
+                font-size: 1.4rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .metric-label {
+                font-size: 0.6rem;
+            }
+            
+            .flow-step {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .nexus-console {
+                height: 220px;
+                font-size: 0.65rem;
+            }
+            
+            .console-header {
+                height: 28px;
+                padding: 0 0.6rem;
+                font-size: 0.65rem;
+            }
+            
+            .nexus-dot {
+                width: 7px;
+                height: 7px;
+            }
+            
+            .nexus-table {
+                font-size: 0.7rem;
+            }
+            
+            .nexus-table th,
+            .nexus-table td {
+                padding: 0.5rem 0.2rem;
+            }
+            
+            .holo-tooltip {
+                font-size: 0.6rem;
+                padding: 5px 8px;
+                max-width: 180px;
+            }
+            
+            .section-header {
+                font-size: 0.75rem;
+                letter-spacing: 0.3px;
+            }
+            
+            .neon-badge {
+                font-size: 0.55rem;
+                padding: 0.2rem 0.4rem;
+            }
+            
+            .nexus-currency {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.4rem;
+            }
+            
+            .nexus-indicator {
+                width: 10px;
+                height: 10px;
+                margin-right: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 0.85rem;
+            }
+            
+            .language-switcher {
+                gap: 2px;
+            }
+            
+            .lang-btn {
+                padding: 2px 4px;
+            }
+            
+            .nexus-flag {
+                width: 12px;
+                height: 8px;
+            }
+            
+            .metric-value {
+                font-size: 1.2rem;
+            }
+            
+            .metric-icon {
+                font-size: 1.2rem;
+            }
+            
+            .flow-step {
+                width: 28px;
+                height: 28px;
+                font-size: 0.65rem;
+            }
+            
+            .nexus-console {
+                height: 200px;
+                font-size: 0.6rem;
+            }
+            
+            .console-header {
+                height: 25px;
+                font-size: 0.6rem;
+            }
+            
+            .section-header {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Scroll Bar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
             background: var(--bg-darker);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
-            border-radius: 4px;
+            border-radius: 3px;
             transition: all 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(45deg, var(--accent-neon), var(--primary-neon));
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Ensure no overflow on small screens */
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .col-lg-3, .col-lg-4, .col-lg-6, .col-lg-8, .col-md-6, .col-6 {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        @media (max-width: 576px) {
+            .col-lg-3, .col-lg-4, .col-lg-6, .col-lg-8, .col-md-6, .col-6 {
+                padding-left: 3px;
+                padding-right: 3px;
+            }
         }
     </style>
 </head>
@@ -1135,15 +1196,15 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-network-wired me-2"></i>
+                <i class="fas fa-network-wired me-1"></i>
                 <span data-lang="title">Kredivo Nexus Payment Testing Platform</span>
             </a>
             <div class="navbar-nav ms-auto">
                 <div class="language-switcher">
                     <button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d3e3d61f-2944-4ab2-9db8-c0279c4dbc9d.png" alt="British Union Jack flag with red, white and blue crosses" class="nexus-flag">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/57dcf882-bc70-43b8-95c2-5036fef5e2e7.png" alt="British Union Jack flag with red, white and blue crosses on blue background" class="nexus-flag">
                         <span>English</span>
                     </button>
                     <button class="lang-btn" id="btn-id" onclick="switchLanguage('id')">
@@ -1164,10 +1225,10 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container mt-4">
-        <!-- Advanced Metrics Row -->
-        <div class="row mb-4">
-            <div class="col-lg-3 col-md-6 col-6 mb-3">
+    <div class="container-fluid mt-3">
+        <!-- Responsive Metrics Row -->
+        <div class="row g-2 mb-3">
+            <div class="col-lg-3 col-md-6 col-6">
                 <div class="nexus-card metric-display tooltip-container lang-switch">
                     <i class="fas fa-check-double metric-icon"></i>
                     <div class="metric-value" id="passedTests">2,847</div>
@@ -1176,7 +1237,7 @@
                     <div class="holo-tooltip" data-lang="tooltip-passed">Payment validation with 99.8% accuracy across all international markets</div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-3">
+            <div class="col-lg-3 col-md-6 col-6">
                 <div class="nexus-card metric-display tooltip-container lang-switch">
                     <i class="fas fa-exclamation-circle metric-icon"></i>
                     <div class="metric-value text-danger">23</div>
@@ -1185,7 +1246,7 @@
                     <div class="holo-tooltip" data-lang="tooltip-failed">Network timeout issues successfully resolved through optimization</div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-3">
+            <div class="col-lg-3 col-md-6 col-6">
                 <div class="nexus-card metric-display tooltip-container lang-switch">
                     <i class="fas fa-sync-alt metric-icon fa-spin"></i>
                     <div class="metric-value text-warning">12</div>
@@ -1194,7 +1255,7 @@
                     <div class="holo-tooltip" data-lang="tooltip-running">Real-time Selenium automation across Indonesia, Vietnam & Philippines</div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-3">
+            <div class="col-lg-3 col-md-6 col-6">
                 <div class="nexus-card metric-display tooltip-container lang-switch">
                     <i class="fas fa-chart-line metric-icon"></i>
                     <div class="metric-value text-success">99.2%</div>
@@ -1205,40 +1266,41 @@
             </div>
         </div>
 
-        <!-- Advanced Payment Flow & Coverage -->
-        <div class="row mb-4">
-            <div class="col-lg-8 mb-3">
+        <!-- Responsive Payment Flow & Coverage -->
+        <div class="row g-2 mb-3">
+            <div class="col-lg-8 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-3">
-                        <h6 class="mb-0 d-flex align-items-center section-header">
+                    <div class="card-header bg-transparent border-0 p-2">
+                        <h6 class="mb-0 d-flex align-items-center section-header flex-wrap">
                             <i class="fas fa-credit-card me-2"></i>
-                            <span data-lang="payment-flow">Live Payment Flow Testing</span> - <span id="currentMarket" data-lang="market-en">Global Operations</span>
-                            <div class="nexus-loader ms-auto" style="width: 100px;"></div>
+                            <span data-lang="payment-flow" class="me-2">Live Payment Flow Testing</span>
+                            <span id="currentMarket" data-lang="market-en" class="me-auto">Global Operations</span>
+                            <div class="nexus-loader" style="width: 80px; height: 3px;"></div>
                         </h6>
                     </div>
-                    <div class="card-body p-3">
+                    <div class="card-body p-2">
                         <div class="flow-container">
-                            <div class="row text-center">
+                            <div class="row text-center g-1">
                                 <div class="col-2">
                                     <div class="flow-step completed tooltip-container">
                                         <i class="fas fa-shield-check"></i>
                                         <div class="holo-tooltip" data-lang="tooltip-auth">Multi-factor authentication successfully verified</div>
                                     </div>
-                                    <small class="text-success" data-lang="auth">Authentication</small>
+                                    <small class="text-success" data-lang="auth">Auth</small>
                                 </div>
                                 <div class="col-2">
                                     <div class="flow-step completed tooltip-container">
                                         <i class="fas fa-calculator"></i>
                                         <div class="holo-tooltip" data-lang="tooltip-amount">Amount validation and fraud detection passed</div>
                                     </div>
-                                    <small class="text-success" data-lang="amount">Validation</small>
+                                    <small class="text-success" data-lang="amount">Valid</small>
                                 </div>
                                 <div class="col-2">
                                     <div class="flow-step completed tooltip-container">
                                         <i class="fas fa-exchange-alt"></i>
                                         <div class="holo-tooltip" data-lang="tooltip-convert">Real-time USD→Multi-currency conversion</div>
                                     </div>
-                                    <small class="text-success" data-lang="convert">Conversion</small>
+                                    <small class="text-success" data-lang="convert">Convert</small>
                                 </div>
                                 <div class="col-2">
                                     <div class="flow-step active tooltip-container">
@@ -1252,32 +1314,30 @@
                                         <i class="fas fa-certificate"></i>
                                         <div class="holo-tooltip" data-lang="tooltip-confirm">Awaiting regulatory compliance confirmation</div>
                                     </div>
-                                    <small class="text-muted" data-lang="confirm">Confirmation</small>
+                                    <small class="text-muted" data-lang="confirm">Confirm</small>
                                 </div>
                                 <div class="col-2">
                                     <div class="flow-step pending tooltip-container">
                                         <i class="fas fa-handshake"></i>
                                         <div class="holo-tooltip" data-lang="tooltip-settle">Final cross-border settlement process</div>
                                     </div>
-                                    <small class="text-muted" data-lang="settle">Settlement</small>
+                                    <small class="text-muted" data-lang="settle">Settle</small>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="mt-4">
-                            <h6 class="mb-3 section-header" data-lang="test-session">Live Test Session Details:</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="mb-1"><strong data-lang="test-id">Test ID:</strong> <code class="text-primary" id="testId">GLOBAL_NEXUS_001</code></p>
-                                    <p class="mb-1"><strong data-lang="amount-label">Amount:</strong> <span class="text-success" id="testAmount">$2,500 USD</span></p>
-                                    <p class="mb-1"><strong data-lang="merchant-label">Merchant:</strong> <span id="merchantName">Shopee International</span></p>
-                                    <p class="mb-1"><strong data-lang="compliance-label">Compliance:</strong> <span class="text-success" data-lang="multi-regulatory">Multi-regulatory</span></p>
+                        <div class="mt-3">
+                            <h6 class="mb-2 section-header" data-lang="test-session">Live Test Session Details:</h6>
+                            <div class="row g-2">
+                                <div class="col-md-6 col-12">
+                                    <p class="mb-1 small"><strong data-lang="test-id">Test ID:</strong> <code class="text-primary" id="testId">GLOBAL_NEXUS_001</code></p>
+                                    <p class="mb-1 small"><strong data-lang="amount-label">Amount:</strong> <span class="text-success" id="testAmount">$2,500 USD</span></p>
+                                    <p class="mb-1 small"><strong data-lang="merchant-label">Merchant:</strong> <span id="merchantName">Shopee International</span></p>
                                 </div>
-                                <div class="col-md-6">
-                                    <p class="mb-1"><strong data-lang="pair-label">Currency Pair:</strong> <span id="currencyPair">USD → Multi</span></p>
-                                    <p class="mb-1"><strong data-lang="rate-label">Exchange Rates:</strong> <span id="exchangeRate">Live market rates</span></p>
-                                    <p class="mb-1"><strong data-lang="status-label">Status:</strong> <span class="neon-badge badge-warning" data-lang="processing">Processing Gateway</span></p>
-                                    <p class="mb-1"><strong data-lang="duration-label">Duration:</strong> <span id="testDuration">01:23</span></p>
+                                <div class="col-md-6 col-12">
+                                    <p class="mb-1 small"><strong data-lang="pair-label">Currency Pair:</strong> <span id="currencyPair">USD → Multi</span></p>
+                                    <p class="mb-1 small"><strong data-lang="rate-label">Exchange Rates:</strong> <span id="exchangeRate">Live market rates</span></p>
+                                    <p class="mb-1 small"><strong data-lang="status-label">Status:</strong> <span class="neon-badge badge-warning" data-lang="processing">Processing Gateway</span></p>
                                 </div>
                             </div>
                         </div>
@@ -1285,72 +1345,72 @@
                 </div>
             </div>
             
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-4 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-3">
+                    <div class="card-header bg-transparent border-0 p-2">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-globe-americas me-2"></i>
                             <span data-lang="market-coverage">Global Market Coverage</span>
                         </h6>
                     </div>
-                    <div class="card-body p-3">
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="card-body p-2">
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-id me-2"></div>
-                                    <span data-lang="country-id">Indonesia</span>
+                                    <span data-lang="country-id" class="small">Indonesia</span>
                                 </span>
                                 <span class="nexus-currency">IDR</span>
                             </div>
-                            <div class="nexus-progress mb-2">
+                            <div class="nexus-progress">
                                 <div class="nexus-progress-bar success" style="width: 98%; height: 100%;"></div>
                             </div>
-                            <small class="text-success"><span data-lang="merchants-count">1,247 active merchants</span> • <span data-lang="uptime">99.8% uptime</span></small>
+                            <small class="text-success"><span data-lang="merchants-count">1,247 merchants</span> • <span data-lang="uptime">99.8%</span></small>
                         </div>
                         
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-vn me-2"></div>
-                                    <span data-lang="country-vn">Vietnam</span>
+                                    <span data-lang="country-vn" class="small">Vietnam</span>
                                 </span>
                                 <span class="nexus-currency">VND</span>
                             </div>
-                            <div class="nexus-progress mb-2">
+                            <div class="nexus-progress">
                                 <div class="nexus-progress-bar info" style="width: 75%; height: 100%;"></div>
                             </div>
-                            <small class="text-info"><span data-lang="merchants-count-vn">423 active merchants</span> • <span data-lang="uptime-vn">97.2% uptime</span></small>
+                            <small class="text-info"><span data-lang="merchants-count-vn">423 merchants</span> • <span data-lang="uptime-vn">97.2%</span></small>
                         </div>
                         
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-ph me-2"></div>
-                                    <span data-lang="country-ph">Philippines</span>
+                                    <span data-lang="country-ph" class="small">Philippines</span>
                                 </span>
                                 <span class="nexus-currency">PHP</span>
                             </div>
-                            <div class="nexus-progress mb-2">
+                            <div class="nexus-progress">
                                 <div class="nexus-progress-bar warning" style="width: 60%; height: 100%;"></div>
                             </div>
-                            <small class="text-warning"><span data-lang="merchants-count-ph">287 active merchants</span> • <span data-lang="uptime-ph">94.1% uptime</span></small>
+                            <small class="text-warning"><span data-lang="merchants-count-ph">287 merchants</span> • <span data-lang="uptime-ph">94.1%</span></small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Advanced Test Results & Compliance -->
-        <div class="row mb-4">
-            <div class="col-lg-6 mb-3">
+        <!-- Responsive Test Results & Compliance -->
+        <div class="row g-2 mb-3">
+            <div class="col-lg-6 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-3">
+                    <div class="card-header bg-transparent border-0 p-2">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-list-check me-2"></i>
-                            <span data-lang="test-execution">Real-Time Test Execution Matrix</span>
+                            <span data-lang="test-execution">Test Execution Matrix</span>
                         </h6>
                     </div>
-                    <div class="card-body p-3">
+                    <div class="card-body p-2">
                         <div class="table-responsive">
                             <table class="table nexus-table">
                                 <thead>
@@ -1358,44 +1418,37 @@
                                         <th data-lang="test-suite">Test Suite</th>
                                         <th data-lang="market">Market</th>
                                         <th data-lang="status">Status</th>
-                                        <th data-lang="time">Response</th>
+                                        <th data-lang="time">Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="tooltip-container">
-                                        <td data-lang="payment-gateway">Payment Gateway Integration</td>
+                                        <td data-lang="payment-gateway">Payment Gateway</td>
                                         <td><div class="nexus-flag flag-vn me-1"></div>VN</td>
                                         <td><span class="neon-badge badge-success" data-lang="passed">Passed</span></td>
                                         <td>1.2s</td>
                                         <div class="holo-tooltip" data-lang="tooltip-gateway-success">All API endpoints validated with optimal response time</div>
                                     </tr>
                                     <tr class="tooltip-container">
-                                        <td data-lang="currency-api">Multi-Currency API</td>
+                                        <td data-lang="currency-api">Currency API</td>
                                         <td><div class="nexus-flag flag-ph me-1"></div>PH</td>
                                         <td><span class="neon-badge badge-warning" data-lang="running">Running</span></td>
                                         <td>2.1s</td>
                                         <div class="holo-tooltip" data-lang="tooltip-currency-test">Testing real-time PHP to USD conversion accuracy</div>
                                     </tr>
                                     <tr class="tooltip-container">
-                                        <td data-lang="settlement">Cross-Border Settlement</td>
+                                        <td data-lang="settlement">Settlement</td>
                                         <td><div class="nexus-flag flag-id me-1"></div>ID</td>
                                         <td><span class="neon-badge badge-success" data-lang="passed">Passed</span></td>
                                         <td>0.8s</td>
-                                        <div class="holo-tooltip" data-lang="tooltip-settlement">Batch settlement successfully processed for 145 international transactions</div>
+                                        <div class="holo-tooltip" data-lang="tooltip-settlement">Batch settlement successfully processed for 145 transactions</div>
                                     </tr>
                                     <tr class="tooltip-container">
-                                        <td data-lang="fraud-detection">AI Fraud Detection</td>
+                                        <td data-lang="fraud-detection">Fraud Detection</td>
                                         <td><div class="nexus-flag flag-vn me-1"></div>VN</td>
                                         <td><span class="neon-badge badge-danger" data-lang="failed">Failed</span></td>
                                         <td>3.4s</td>
-                                        <div class="holo-tooltip" data-lang="tooltip-fraud">Machine learning model accuracy below threshold - Auto-retraining initiated</div>
-                                    </tr>
-                                    <tr class="tooltip-container">
-                                        <td data-lang="compliance-validation">Regulatory Compliance</td>
-                                        <td><div class="nexus-flag flag-ph me-1"></div>PH</td>
-                                        <td><span class="neon-badge badge-success" data-lang="passed">Passed</span></td>
-                                        <td>1.7s</td>
-                                        <div class="holo-tooltip" data-lang="tooltip-compliance">BSP regulatory requirements fully satisfied with documentation</div>
+                                        <div class="holo-tooltip" data-lang="tooltip-fraud">Machine learning model retraining initiated</div>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1404,70 +1457,70 @@
                 </div>
             </div>
             
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-3">
+                    <div class="card-header bg-transparent border-0 p-2">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-shield-virus me-2"></i>
-                            <span data-lang="compliance-matrix">International Compliance Matrix</span>
+                            <span data-lang="compliance-matrix">Compliance Matrix</span>
                         </h6>
                     </div>
-                    <div class="card-body p-3">
-                        <div class="mb-3 tooltip-container">
-                            <h6 class="d-flex align-items-center">
+                    <div class="card-body p-2">
+                        <div class="mb-2 tooltip-container">
+                            <h6 class="d-flex align-items-center small">
                                 <span class="nexus-indicator indicator-compliant"></span>
-                                <span data-lang="bank-indonesia">Bank Indonesia (BI) - Indonesia</span>
+                                <span data-lang="bank-indonesia">Bank Indonesia (BI)</span>
                             </h6>
-                            <p class="text-secondary mb-1" data-lang="bi-requirements">PCI DSS Level 1 • Anti-Money Laundering • ISO 27001 Security</p>
-                            <small class="text-success" data-lang="bi-status">Last security audit: January 10, 2024 - Fully Compliant</small>
-                            <div class="holo-tooltip" data-lang="tooltip-bi">Advanced Indonesian banking regulations verified with enhanced security protocols</div>
+                            <p class="text-secondary mb-1 small" data-lang="bi-requirements">PCI DSS Level 1 • AML • ISO 27001</p>
+                            <small class="text-success" data-lang="bi-status">Last audit: Jan 10, 2024 - Compliant</small>
+                            <div class="holo-tooltip" data-lang="tooltip-bi">Indonesian banking regulations verified with enhanced security protocols</div>
                         </div>
                         
-                        <div class="mb-3 tooltip-container">
-                            <h6 class="d-flex align-items-center">
+                        <div class="mb-2 tooltip-container">
+                            <h6 class="d-flex align-items-center small">
                                 <span class="nexus-indicator indicator-compliant"></span>
-                                <span data-lang="state-bank-vietnam">State Bank of Vietnam (SBV) - Vietnam</span>
+                                <span data-lang="state-bank-vietnam">State Bank of Vietnam (SBV)</span>
                             </h6>
-                            <p class="text-secondary mb-1" data-lang="sbv-requirements">Payment Service License • Enhanced KYC • Cross-border Regulations</p>
-                            <small class="text-success" data-lang="sbv-status">Last compliance audit: January 8, 2024 - Security Verified</small>
-                            <div class="holo-tooltip" data-lang="tooltip-sbv">Vietnamese banking integration protocols successfully implemented with full regulatory compliance</div>
+                            <p class="text-secondary mb-1 small" data-lang="sbv-requirements">Payment License • KYC • Cross-border</p>
+                            <small class="text-success" data-lang="sbv-status">Last audit: Jan 8, 2024 - Verified</small>
+                            <div class="holo-tooltip" data-lang="tooltip-sbv">Vietnamese banking integration protocols successfully implemented</div>
                         </div>
                         
-                        <div class="mb-3 tooltip-container">
-                            <h6 class="d-flex align-items-center">
+                        <div class="mb-2 tooltip-container">
+                            <h6 class="d-flex align-items-center small">
                                 <span class="nexus-indicator indicator-pending"></span>
-                                <span data-lang="bangko-sentral">Bangko Sentral ng Pilipinas (BSP) - Philippines</span>
+                                <span data-lang="bangko-sentral">Bangko Sentral (BSP)</span>
                             </h6>
-                            <p class="text-secondary mb-1" data-lang="bsp-requirements">E-Money License Application • Digital Wallet Compliance</p>
-                            <small class="text-warning" data-lang="bsp-status">Advanced security review pending - Expected completion: January 25, 2024</small>
-                            <div class="holo-tooltip" data-lang="tooltip-bsp">Philippine central bank conducting comprehensive security review for international operations</div>
+                            <p class="text-secondary mb-1 small" data-lang="bsp-requirements">E-Money License • Digital wallet</p>
+                            <small class="text-warning" data-lang="bsp-status">Review pending - Expected: Jan 25, 2024</small>
+                            <div class="holo-tooltip" data-lang="tooltip-bsp">Philippine central bank conducting security review</div>
                         </div>
                         
-                        <div class="mb-3 tooltip-container">
-                            <h6 class="d-flex align-items-center">
+                        <div class="mb-2 tooltip-container">
+                            <h6 class="d-flex align-items-center small">
                                 <span class="nexus-indicator indicator-compliant"></span>
-                                <span data-lang="international-standards">Global Security Standards</span>
+                                <span data-lang="international-standards">Global Standards</span>
                             </h6>
-                            <p class="text-secondary mb-1" data-lang="intl-requirements">ISO 27001 • SOC 2 Type II • GDPR • Enhanced Encryption</p>
-                            <small class="text-success" data-lang="intl-status">All international certifications current • Next-gen security protocols active</small>
-                            <div class="holo-tooltip" data-lang="tooltip-intl">Advanced encryption and global privacy standards maintained for international operations</div>
+                            <p class="text-secondary mb-1 small" data-lang="intl-requirements">ISO 27001 • SOC 2 • GDPR</p>
+                            <small class="text-success" data-lang="intl-status">All certifications current</small>
+                            <div class="holo-tooltip" data-lang="tooltip-intl">Global privacy standards maintained for international operations</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Advanced Console -->
-        <div class="row">
+        <!-- Responsive Console -->
+        <div class="row g-2">
             <div class="col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-3">
+                    <div class="card-header bg-transparent border-0 p-2">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-terminal me-2"></i>
-                            <span data-lang="live-console">Advanced Test Console</span> - <span data-lang="selenium-grid">Selenium Grid Multi-Browser Execution</span>
+                            <span data-lang="live-console">Advanced Test Console</span> - <span data-lang="selenium-grid">Selenium Grid Execution</span>
                         </h6>
                     </div>
-                    <div class="card-body p-3">
+                    <div class="card-body p-2">
                         <div class="nexus-console">
                             <div class="console-header">
                                 <div class="nexus-dots">
@@ -1475,22 +1528,19 @@
                                     <div class="nexus-dot dot-yellow"></div>
                                     <div class="nexus-dot dot-green"></div>
                                 </div>
-                                <span class="ms-3 text-muted">Kredivo Nexus Terminal v3.2.1</span>
-                                <span class="ms-auto text-primary">◉ LIVE GLOBAL</span>
+                                <span class="ms-2 text-muted small">Kredivo Nexus Terminal v3.2.1</span>
+                                <span class="ms-auto text-primary small">◉ LIVE</span>
                             </div>
                             <div class="console-content" id="nexusConsole">
-<span class="log-timestamp">[14:23:15]</span> <span class="log-info">NEXUS</span> <span data-lang="console-init">Initializing global payment test matrix for international operations</span><br>
-<span class="log-timestamp">[14:23:16]</span> <span class="log-info">SELENIUM</span> <span data-lang="console-webdriver">Multi-browser grid initialized - Chrome v120, Firefox v118, Edge v119, Safari v16</span><br>
-<span class="log-timestamp">[14:23:17]</span> <span class="log-info">NETWORK</span> <span data-lang="console-tunnel">Secure tunnel to Kredivo global operations portal established</span><br>
-<span class="log-timestamp">[14:23:18]</span> <span class="log-success">AUTH</span> <span data-lang="console-auth">Enterprise multi-factor authentication verified - Test User GLOBAL_001</span><br>
-<span class="log-timestamp">[14:23:19]</span> <span class="log-info">PAYMENT</span> <span data-lang="console-payment">Initiating international payment test of $2,500 USD</span><br>
-<span class="log-timestamp">[14:23:20]</span> <span class="log-info">FOREX</span> <span data-lang="console-forex">Real-time multi-currency conversion: USD → IDR/VND/PHP</span><br>
-<span class="log-timestamp">[14:23:21]</span> <span class="log-info">GATEWAY</span> <span data-lang="console-gateway">International banking gateway response received</span><br>
-<span class="log-timestamp">[14:23:22]</span> <span class="log-info">VALIDATION</span> <span data-lang="console-validation">Transaction ID verified: TXN_GLOBAL_NEXUS_001247</span><br>
-<span class="log-timestamp">[14:23:23]</span> <span class="log-success">SUCCESS</span> <span data-lang="console-success">Payment processed successfully across all markets</span><br>
-<span class="log-timestamp">[14:23:24]</span> <span class="log-info">COMPLIANCE</span> <span data-lang="console-compliance">Generating multi-regulatory compliance report</span><br>
-<span class="log-timestamp">[14:23:25]</span> <span class="log-info">METRICS</span> <span data-lang="console-metrics">Test completed - Duration: 10.3s, Success rate: 99.2%</span><br>
-<span class="log-warning">[14:23:26]</span> <span class="log-warning">NEXUS</span> <span data-lang="console-next">Initiating cross-browser validation sequence...</span>
+<span class="log-timestamp">[14:23:15]</span> <span class="log-info">NEXUS</span> <span data-lang="console-init">Initializing global payment test matrix</span><br>
+<span class="log-timestamp">[14:23:16]</span> <span class="log-info">SELENIUM</span> <span data-lang="console-webdriver">Multi-browser grid initialized - Chrome, Firefox, Edge, Safari</span><br>
+<span class="log-timestamp">[14:23:17]</span> <span class="log-info">NETWORK</span> <span data-lang="console-tunnel">Secure tunnel to Kredivo portal established</span><br>
+<span class="log-timestamp">[14:23:18]</span> <span class="log-success">AUTH</span> <span data-lang="console-auth">Multi-factor authentication verified - Test User GLOBAL_001</span><br>
+<span class="log-timestamp">[14:23:19]</span> <span class="log-info">PAYMENT</span> <span data-lang="console-payment">Initiating payment test of $2,500 USD</span><br>
+<span class="log-timestamp">[14:23:20]</span> <span class="log-info">FOREX</span> <span data-lang="console-forex">Real-time conversion: USD → IDR/VND/PHP</span><br>
+<span class="log-timestamp">[14:23:21]</span> <span class="log-info">GATEWAY</span> <span data-lang="console-gateway">Banking gateway response received</span><br>
+<span class="log-timestamp">[14:23:22]</span> <span class="log-success">SUCCESS</span> <span data-lang="console-success">Payment processed successfully</span><br>
+<span class="log-warning">[14:23:23]</span> <span class="log-warning">NEXUS</span> <span data-lang="console-next">Initiating cross-browser validation...</span>
                             </div>
                         </div>
                     </div>
@@ -1502,7 +1552,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Complete Language Data with all 4 languages
+        // Complete Language Data
         const languages = {
             en: {
                 'title': 'Kredivo Nexus Payment Testing Platform',
@@ -1516,15 +1566,12 @@
                 'target': 'Target: 99.5%',
                 'payment-flow': 'Live Payment Flow Testing',
                 'market-en': 'Global Operations',
-                'market-id': 'Indonesia Market',
-                'market-vn': 'Vietnam Market',
-                'market-ph': 'Philippines Market',
-                'auth': 'Authentication',
-                'amount': 'Validation',
-                'convert': 'Conversion',
+                'auth': 'Auth',
+                'amount': 'Valid',
+                'convert': 'Convert',
                 'gateway': 'Gateway',
-                'confirm': 'Confirmation',
-                'settle': 'Settlement',
+                'confirm': 'Confirm',
+                'settle': 'Settle',
                 'test-session': 'Live Test Session Details:',
                 'test-id': 'Test ID:',
                 'amount-label': 'Amount:',
@@ -1532,81 +1579,73 @@
                 'pair-label': 'Currency Pair:',
                 'rate-label': 'Exchange Rates:',
                 'status-label': 'Status:',
-                'compliance-label': 'Compliance:',
-                'duration-label': 'Duration:',
-                'processing': 'Processing Gateway',
-                'multi-regulatory': 'Multi-regulatory',
+                'processing': 'Processing',
                 'market-coverage': 'Global Market Coverage',
                 'country-id': 'Indonesia',
                 'country-vn': 'Vietnam',
                 'country-ph': 'Philippines',
-                'merchants-count': '1,247 active merchants',
-                'merchants-count-vn': '423 active merchants',
-                'merchants-count-ph': '287 active merchants',
-                'uptime': '99.8% uptime',
-                'uptime-vn': '97.2% uptime',
-                'uptime-ph': '94.1% uptime',
-                'test-execution': 'Real-Time Test Execution Matrix',
+                'merchants-count': '1,247 merchants',
+                'merchants-count-vn': '423 merchants',
+                'merchants-count-ph': '287 merchants',
+                'uptime': '99.8%',
+                'uptime-vn': '97.2%',
+                'uptime-ph': '94.1%',
+                'test-execution': 'Test Execution Matrix',
                 'test-suite': 'Test Suite',
                 'market': 'Market',
                 'status': 'Status',
-                'time': 'Response',
-                'payment-gateway': 'Payment Gateway Integration',
-                'currency-api': 'Multi-Currency API',
-                'settlement': 'Cross-Border Settlement',
-                'fraud-detection': 'AI Fraud Detection',
-                'compliance-validation': 'Regulatory Compliance',
+                'time': 'Time',
+                'payment-gateway': 'Payment Gateway',
+                'currency-api': 'Currency API',
+                'settlement': 'Settlement',
+                'fraud-detection': 'Fraud Detection',
                 'passed': 'Passed',
                 'running': 'Running',
                 'failed': 'Failed',
-                'compliance-matrix': 'International Compliance Matrix',
-                'bank-indonesia': 'Bank Indonesia (BI) - Indonesia',
-                'state-bank-vietnam': 'State Bank of Vietnam (SBV) - Vietnam',
-                'bangko-sentral': 'Bangko Sentral ng Pilipinas (BSP) - Philippines',
-                'international-standards': 'Global Security Standards',
+                'compliance-matrix': 'Compliance Matrix',
+                'bank-indonesia': 'Bank Indonesia (BI)',
+                'state-bank-vietnam': 'State Bank of Vietnam (SBV)',
+                'bangko-sentral': 'Bangko Sentral (BSP)',
+                'international-standards': 'Global Standards',
                 'live-console': 'Advanced Test Console',
-                'selenium-grid': 'Selenium Grid Multi-Browser Execution',
-                'bi-requirements': 'PCI DSS Level 1 • Anti-Money Laundering • ISO 27001 Security',
-                'sbv-requirements': 'Payment Service License • Enhanced KYC • Cross-border Regulations',
-                'bsp-requirements': 'E-Money License Application • Digital Wallet Compliance',
-                'intl-requirements': 'ISO 27001 • SOC 2 Type II • GDPR • Enhanced Encryption',
-                'bi-status': 'Last security audit: January 10, 2024 - Fully Compliant',
-                'sbv-status': 'Last compliance audit: January 8, 2024 - Security Verified',
-                'bsp-status': 'Advanced security review pending - Expected completion: January 25, 2024',
-                'intl-status': 'All international certifications current • Next-gen security protocols active',
+                'selenium-grid': 'Selenium Grid Execution',
+                'bi-requirements': 'PCI DSS Level 1 • AML • ISO 27001',
+                'sbv-requirements': 'Payment License • KYC • Cross-border',
+                'bsp-requirements': 'E-Money License • Digital wallet',
+                'intl-requirements': 'ISO 27001 • SOC 2 • GDPR',
+                'bi-status': 'Last audit: Jan 10, 2024 - Compliant',
+                'sbv-status': 'Last audit: Jan 8, 2024 - Verified',
+                'bsp-status': 'Review pending - Expected: Jan 25, 2024',
+                'intl-status': 'All certifications current',
                 // Tooltips
-                'tooltip-passed': 'Payment validation with 99.8% accuracy across all international markets',
-                'tooltip-failed': 'Network timeout issues successfully resolved through optimization',
-                'tooltip-running': 'Real-time Selenium automation across Indonesia, Vietnam & Philippines',
-                'tooltip-success': 'Overall platform reliability maintained across 3 international markets',
-                'tooltip-auth': 'Multi-factor authentication successfully verified',
-                'tooltip-amount': 'Amount validation and fraud detection passed',
-                'tooltip-convert': 'Real-time USD→Multi-currency conversion',
-                'tooltip-gateway': 'Processing through international banking gateway',
-                'tooltip-confirm': 'Awaiting regulatory compliance confirmation',
-                'tooltip-settle': 'Final cross-border settlement process',
-                'tooltip-gateway-success': 'All API endpoints validated with optimal response time',
-                'tooltip-currency-test': 'Testing real-time PHP to USD conversion accuracy',
-                'tooltip-settlement': 'Batch settlement successfully processed for 145 international transactions',
-                'tooltip-fraud': 'Machine learning model accuracy below threshold - Auto-retraining initiated',
-                'tooltip-compliance': 'BSP regulatory requirements fully satisfied with documentation',
-                'tooltip-bi': 'Advanced Indonesian banking regulations verified with enhanced security protocols',
-                'tooltip-sbv': 'Vietnamese banking integration protocols successfully implemented with full regulatory compliance',
-                'tooltip-bsp': 'Philippine central bank conducting comprehensive security review for international operations',
-                'tooltip-intl': 'Advanced encryption and global privacy standards maintained for international operations',
+                'tooltip-passed': 'Payment validation 99.8% accuracy across markets',
+                'tooltip-failed': 'Network timeout issues resolved',
+                'tooltip-running': 'Real-time Selenium automation',
+                'tooltip-success': 'Platform reliability across 3 markets',
+                'tooltip-auth': 'Authentication verified',
+                'tooltip-amount': 'Amount validation passed',
+                'tooltip-convert': 'USD→Multi-currency conversion',
+                'tooltip-gateway': 'International banking gateway',
+                'tooltip-confirm': 'Awaiting confirmation',
+                'tooltip-settle': 'Settlement process',
+                'tooltip-gateway-success': 'API endpoints validated',
+                'tooltip-currency-test': 'Testing PHP to USD conversion',
+                'tooltip-settlement': '145 transactions processed',
+                'tooltip-fraud': 'ML model retraining initiated',
+                'tooltip-bi': 'Indonesian banking regulations verified',
+                'tooltip-sbv': 'Vietnamese integration protocols implemented',
+                'tooltip-bsp': 'Philippine central bank security review',
+                'tooltip-intl': 'Global privacy standards maintained',
                 // Console messages
-                'console-init': 'Initializing global payment test matrix for international operations',
-                'console-webdriver': 'Multi-browser grid initialized - Chrome v120, Firefox v118, Edge v119, Safari v16',
-                'console-tunnel': 'Secure tunnel to Kredivo global operations portal established',
-                'console-auth': 'Enterprise multi-factor authentication verified - Test User GLOBAL_001',
-                'console-payment': 'Initiating international payment test of $2,500 USD',
-                'console-forex': 'Real-time multi-currency conversion: USD → IDR/VND/PHP',
-                'console-gateway': 'International banking gateway response received',
-                'console-validation': 'Transaction ID verified: TXN_GLOBAL_NEXUS_001247',
-                'console-success': 'Payment processed successfully across all markets',
-                'console-compliance': 'Generating multi-regulatory compliance report',
-                'console-metrics': 'Test completed - Duration: 10.3s, Success rate: 99.2%',
-                'console-next': 'Initiating cross-browser validation sequence...'
+                'console-init': 'Initializing global payment test matrix',
+                'console-webdriver': 'Multi-browser grid initialized - Chrome, Firefox, Edge, Safari',
+                'console-tunnel': 'Secure tunnel to Kredivo portal established',
+                'console-auth': 'Multi-factor authentication verified - Test User GLOBAL_001',
+                'console-payment': 'Initiating payment test of $2,500 USD',
+                'console-forex': 'Real-time conversion: USD → IDR/VND/PHP',
+                'console-gateway': 'Banking gateway response received',
+                'console-success': 'Payment processed successfully',
+                'console-next': 'Initiating cross-browser validation...'
             },
             id: {
                 'title': 'Platform Pengujian Pembayaran Kredivo Nexus',
@@ -1618,58 +1657,51 @@
                 'metric-change-failed': '-45% minggu ini',
                 'live-tests': 'Otomasi langsung',
                 'target': 'Target: 99.5%',
-                'payment-flow': 'Pengujian Alur Pembayaran Langsung',
-                'market-en': 'Operasi Global',
-                'market-id': 'Pasar Indonesia',
-                'market-vn': 'Pasar Vietnam',
-                'market-ph': 'Pasar Filipina',
-                'auth': 'Autentikasi',
-                'amount': 'Validasi',
+                'payment-flow': 'Pengujian Alur Pembayaran',
+                'market-en': 'Pasar Indonesia',
+                'auth': 'Auth',
+                'amount': 'Valid',
                 'convert': 'Konversi',
                 'gateway': 'Gateway',
-                'confirm': 'Konfirmasi',
-                'settle': 'Penyelesaian',
-                'test-session': 'Detail Sesi Pengujian Langsung:',
-                'test-id': 'ID Pengujian:',
+                'confirm': 'Konfirm',
+                'settle': 'Selesai',
+                'test-session': 'Detail Sesi Pengujian:',
+                'test-id': 'ID Tes:',
                 'amount-label': 'Jumlah:',
                 'merchant-label': 'Merchant:',
-                'pair-label': 'Pasangan Mata Uang:',
-                'rate-label': 'Kurs Tukar:',
+                'pair-label': 'Pasangan:',
+                'rate-label': 'Kurs:',
                 'status-label': 'Status:',
-                'compliance-label': 'Kepatuhan:',
-                'duration-label': 'Durasi:',
-                'processing': 'Memproses Gateway',
-                'multi-regulatory': 'Multi-regulasi',
-                'market-coverage': 'Cakupan Pasar Global',
+                'processing': 'Proses',
+                'market-coverage': 'Cakupan Pasar',
                 'country-id': 'Indonesia',
                 'country-vn': 'Vietnam',
                 'country-ph': 'Filipina',
-                'merchants-count': '1,247 merchant aktif',
-                'merchants-count-vn': '423 merchant aktif',
-                'merchants-count-ph': '287 merchant aktif',
-                'uptime': '99.8% uptime',
-                'uptime-vn': '97.2% uptime',
-                'uptime-ph': '94.1% uptime',
-                'test-execution': 'Matriks Eksekusi Pengujian Real-Time',
-                'test-suite': 'Suite Pengujian',
+                'merchants-count': '1,247 merchant',
+                'merchants-count-vn': '423 merchant',
+                'merchants-count-ph': '287 merchant',
+                'uptime': '99.8%',
+                'uptime-vn': '97.2%',
+                'uptime-ph': '94.1%',
+                'test-execution': 'Matriks Eksekusi Tes',
+                'test-suite': 'Suite Tes',
                 'market': 'Pasar',
                 'status': 'Status',
-                'time': 'Respons',
-                'payment-gateway': 'Integrasi Gateway Pembayaran',
-                'currency-api': 'API Multi-Mata Uang',
-                'settlement': 'Penyelesaian Lintas Batas',
-                'fraud-detection': 'Deteksi Penipuan AI',
-                'compliance-validation': 'Validasi Kepatuhan Regulasi',
+                'time': 'Waktu',
+                'payment-gateway': 'Gateway Bayar',
+                'currency-api': 'API Mata Uang',
+                'settlement': 'Penyelesaian',
+                'fraud-detection': 'Deteksi Penipuan',
                 'passed': 'Berhasil',
-                'running': 'Berjalan',
+                'running': 'Jalan',
                 'failed': 'Gagal',
-                'compliance-matrix': 'Matriks Kepatuhan Internasional',
-                'bank-indonesia': 'Bank Indonesia (BI) - Indonesia',
-                'state-bank-vietnam': 'Bank Negara Vietnam (SBV) - Vietnam',
-                'bangko-sentral': 'Bangko Sentral ng Pilipinas (BSP) - Filipina',
-                'international-standards': 'Standar Keamanan Global',
-                'live-console': 'Konsol Pengujian Lanjutan',
-                'selenium-grid': 'Eksekusi Multi-Browser Grid Selenium'
+                'compliance-matrix': 'Matriks Kepatuhan',
+                'bank-indonesia': 'Bank Indonesia (BI)',
+                'state-bank-vietnam': 'Bank Vietnam (SBV)',
+                'bangko-sentral': 'Bangko Sentral (BSP)',
+                'international-standards': 'Standar Global',
+                'live-console': 'Konsol Tes Lanjutan',
+                'selenium-grid': 'Eksekusi Grid Selenium'
             },
             vn: {
                 'title': 'Nền tảng Kiểm thử Thanh toán Kredivo Nexus',
@@ -1679,129 +1711,115 @@
                 'success-rate': 'Tỷ lệ Thành công',
                 'metric-change': '+15% tuần này',
                 'metric-change-failed': '-45% tuần này',
-                'live-tests': 'Tự động hóa trực tiếp',
+                'live-tests': 'Tự động trực tiếp',
                 'target': 'Mục tiêu: 99.5%',
-                'payment-flow': 'Kiểm thử Quy trình Thanh toán Trực tiếp',
-                'market-en': 'Hoạt động Toàn cầu',
-                'market-id': 'Thị trường Indonesia',
-                'market-vn': 'Thị trường Việt Nam',
-                'market-ph': 'Thị trường Philippines',
-                'auth': 'Xác thực',
-                'amount': 'Xác thực',
-                'convert': 'Chuyển đổi',
+                'payment-flow': 'Kiểm thử Quy trình Thanh toán',
+                'market-en': 'Thị trường Việt Nam',
+                'auth': 'Auth',
+                'amount': 'Valid',
+                'convert': 'Chuyển',
                 'gateway': 'Cổng',
                 'confirm': 'Xác nhận',
                 'settle': 'Thanh toán',
-                'test-session': 'Chi tiết Phiên Kiểm thử Trực tiếp:',
+                'test-session': 'Chi tiết Phiên Kiểm thử:',
                 'test-id': 'ID Kiểm thử:',
                 'amount-label': 'Số tiền:',
                 'merchant-label': 'Thương gia:',
-                'pair-label': 'Cặp Tiền tệ:',
-                'rate-label': 'Tỷ giá Hối đoái:',
+                'pair-label': 'Cặp:',
+                'rate-label': 'Tỷ giá:',
                 'status-label': 'Trạng thái:',
-                'compliance-label': 'Tuân thủ:',
-                'duration-label': 'Thời lượng:',
-                'processing': 'Đang xử lý Cổng',
-                'multi-regulatory': 'Đa quy định',
-                'market-coverage': 'Phạm vi Thị trường Toàn cầu',
+                'processing': 'Xử lý',
+                'market-coverage': 'Phạm vi Thị trường',
                 'country-id': 'Indonesia',
                 'country-vn': 'Việt Nam',
                 'country-ph': 'Philippines',
-                'merchants-count': '1,247 thương gia hoạt động',
-                'merchants-count-vn': '423 thương gia hoạt động',
-                'merchants-count-ph': '287 thương gia hoạt động',
-                'uptime': '99.8% thời gian hoạt động',
-                'uptime-vn': '97.2% thời gian hoạt động',
-                'uptime-ph': '94.1% thời gian hoạt động',
-                'test-execution': 'Ma trận Thực thi Kiểm thử Thời gian Thực',
+                'merchants-count': '1,247 thương gia',
+                'merchants-count-vn': '423 thương gia',
+                'merchants-count-ph': '287 thương gia',
+                'uptime': '99.8%',
+                'uptime-vn': '97.2%',
+                'uptime-ph': '94.1%',
+                'test-execution': 'Ma trận Thực thi Kiểm thử',
                 'test-suite': 'Bộ Kiểm thử',
                 'market': 'Thị trường',
                 'status': 'Trạng thái',
-                'time': 'Phản hồi',
-                'payment-gateway': 'Tích hợp Cổng Thanh toán',
-                'currency-api': 'API Đa Tiền tệ',
-                'settlement': 'Thanh toán Xuyên biên giới',
-                'fraud-detection': 'Phát hiện Gian lận AI',
-                'compliance-validation': 'Xác thực Tuân thủ Quy định',
+                'time': 'Thời gian',
+                'payment-gateway': 'Cổng Thanh toán',
+                'currency-api': 'API Tiền tệ',
+                'settlement': 'Thanh toán',
+                'fraud-detection': 'Phát hiện Gian lận',
                 'passed': 'Thành công',
-                'running': 'Đang chạy',
+                'running': 'Chạy',
                 'failed': 'Thất bại',
-                'compliance-matrix': 'Ma trận Tuân thủ Quốc tế',
-                'bank-indonesia': 'Ngân hàng Indonesia (BI) - Indonesia',
-                'state-bank-vietnam': 'Ngân hàng Nhà nước Việt Nam (SBV) - Việt Nam',
-                'bangko-sentral': 'Ngân hàng Trung ương Philippines (BSP) - Philippines',
-                'international-standards': 'Tiêu chuẩn Bảo mật Toàn cầu',
-                'live-console': 'Bảng điều khiển Kiểm thử Nâng cao',
-                'selenium-grid': 'Thực thi Đa trình duyệt Grid Selenium'
+                'compliance-matrix': 'Ma trận Tuân thủ',
+                'bank-indonesia': 'Ngân hàng Indonesia (BI)',
+                'state-bank-vietnam': 'Ngân hàng VN (SBV)',
+                'bangko-sentral': 'Ngân hàng TW (BSP)',
+                'international-standards': 'Tiêu chuẩn Toàn cầu',
+                'live-console': 'Bảng điều khiển Nâng cao',
+                'selenium-grid': 'Thực thi Grid Selenium'
             },
             ph: {
                 'title': 'Kredivo Nexus Payment Testing Platform',
-                'tests-passed': 'Mga Pagsusulit na Nakapasa',
-                'tests-failed': 'Mga Pagsusulit na Nabigo',
-                'tests-running': 'Kasalukuyang Tumatakbo',
-                'success-rate': 'Rate ng Tagumpay',
+                'tests-passed': 'Mga Test na Nakapasa',
+                'tests-failed': 'Mga Test na Nabigo',
+                'tests-running': 'Tumatakbo',
+                'success-rate': 'Success Rate',
                 'metric-change': '+15% ngayong linggo',
                 'metric-change-failed': '-45% ngayong linggo',
                 'live-tests': 'Live automation',
                 'target': 'Target: 99.5%',
-                'payment-flow': 'Live na Pagsusulit ng Daloy ng Bayad',
-                'market-en': 'Global Operations',
-                'market-id': 'Market ng Indonesia',
-                'market-vn': 'Market ng Vietnam',
-                'market-ph': 'Market ng Pilipinas',
-                'auth': 'Authentication',
-                'amount': 'Validation',
-                'convert': 'Conversion',
+                'payment-flow': 'Live Payment Flow Testing',
+                'market-en': 'Market ng Pilipinas',
+                'auth': 'Auth',
+                'amount': 'Valid',
+                'convert': 'Convert',
                 'gateway': 'Gateway',
-                'confirm': 'Kumpirmasyon',
-                'settle': 'Settlement',
-                'test-session': 'Mga Detalye ng Live Test Session:',
+                'confirm': 'Confirm',
+                'settle': 'Settle',
+                'test-session': 'Mga Detalye ng Test Session:',
                 'test-id': 'Test ID:',
                 'amount-label': 'Halaga:',
                 'merchant-label': 'Merchant:',
-                'pair-label': 'Currency Pair:',
-                'rate-label': 'Exchange Rates:',
+                'pair-label': 'Pair:',
+                'rate-label': 'Rate:',
                 'status-label': 'Status:',
-                'compliance-label': 'Compliance:',
-                'duration-label': 'Duration:',
-                'processing': 'Pinoproseso ang Gateway',
-                'multi-regulatory': 'Multi-regulatory',
-                'market-coverage': 'Global Market Coverage',
+                'processing': 'Processing',
+                'market-coverage': 'Market Coverage',
                 'country-id': 'Indonesia',
                 'country-vn': 'Vietnam',
                 'country-ph': 'Pilipinas',
-                'merchants-count': '1,247 active merchants',
-                'merchants-count-vn': '423 active merchants',
-                'merchants-count-ph': '287 active merchants',
-                'uptime': '99.8% uptime',
-                'uptime-vn': '97.2% uptime',
-                'uptime-ph': '94.1% uptime',
-                'test-execution': 'Real-Time Test Execution Matrix',
+                'merchants-count': '1,247 merchants',
+                'merchants-count-vn': '423 merchants',
+                'merchants-count-ph': '287 merchants',
+                'uptime': '99.8%',
+                'uptime-vn': '97.2%',
+                'uptime-ph': '94.1%',
+                'test-execution': 'Test Execution Matrix',
                 'test-suite': 'Test Suite',
                 'market': 'Market',
                 'status': 'Status',
-                'time': 'Response',
-                'payment-gateway': 'Payment Gateway Integration',
-                'currency-api': 'Multi-Currency API',
-                'settlement': 'Cross-Border Settlement',
-                'fraud-detection': 'AI Fraud Detection',
-                'compliance-validation': 'Regulatory Compliance',
+                'time': 'Time',
+                'payment-gateway': 'Payment Gateway',
+                'currency-api': 'Currency API',
+                'settlement': 'Settlement',
+                'fraud-detection': 'Fraud Detection',
                 'passed': 'Nakapasa',
                 'running': 'Tumatakbo',
                 'failed': 'Nabigo',
-                'compliance-matrix': 'International Compliance Matrix',
-                'bank-indonesia': 'Bank Indonesia (BI) - Indonesia',
-                'state-bank-vietnam': 'State Bank ng Vietnam (SBV) - Vietnam',
-                'bangko-sentral': 'Bangko Sentral ng Pilipinas (BSP) - Pilipinas',
-                'international-standards': 'Global Security Standards',
+                'compliance-matrix': 'Compliance Matrix',
+                'bank-indonesia': 'Bank Indonesia (BI)',
+                'state-bank-vietnam': 'State Bank ng Vietnam (SBV)',
+                'bangko-sentral': 'Bangko Sentral (BSP)',
+                'international-standards': 'Global Standards',
                 'live-console': 'Advanced Test Console',
-                'selenium-grid': 'Selenium Grid Multi-Browser Execution'
+                'selenium-grid': 'Selenium Grid Execution'
             }
         };
 
         let currentLanguage = 'en';
 
-        // Advanced Language switching function
+        // Language switching function
         function switchLanguage(lang) {
             console.log('Switching to language:', lang);
             
@@ -1817,32 +1835,28 @@
             setTimeout(() => {
                 currentLanguage = lang;
                 
-                // Update all translatable elements with enhanced animation
+                // Update all translatable elements
                 document.querySelectorAll('[data-lang]').forEach(element => {
                     const key = element.getAttribute('data-lang');
                     if (languages[lang] && languages[lang][key]) {
-                        element.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            element.textContent = languages[lang][key];
-                            element.style.transform = 'scale(1)';
-                        }, 100);
+                        element.textContent = languages[lang][key];
                     }
                 });
                 
-                // Update market-specific content with enhanced data
+                // Update market-specific content
                 updateMarketContent(lang);
                 
-                // Update console content with localized messages
+                // Update console content
                 updateConsoleContent(lang);
                 
                 // Remove switching animation
                 setTimeout(() => {
                     elements.forEach(el => el.classList.remove('switching'));
                 }, 200);
-            }, 300);
+            }, 250);
         }
 
-        // Enhanced market-specific content based on selected language
+        // Market-specific content updates
         function updateMarketContent(lang) {
             const marketData = {
                 en: {
@@ -1850,7 +1864,7 @@
                     amount: '$2,500 USD',
                     merchant: 'Shopee International',
                     pair: 'USD → Multi',
-                    rate: 'Live market rates',
+                    rate: 'Live rates',
                     testId: 'GLOBAL_NEXUS_001'
                 },
                 id: {
@@ -1888,52 +1902,44 @@
             document.getElementById('testId').textContent = data.testId;
         }
 
-        // Enhanced console content with language-specific messages
+        // Console content updates
         function updateConsoleContent(lang) {
             const consoleContent = document.getElementById('nexusConsole');
             const timestamp = new Date().toTimeString().slice(0, 8);
             
             const consoleMessages = {
-                en: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Initializing global payment test matrix for international operations<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">SELENIUM</span> Multi-browser grid initialized - Chrome v120, Firefox v118, Edge v119, Safari v16<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Enterprise multi-factor authentication verified - Test User GLOBAL_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Initiating international payment test of $2,500 USD<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Real-time multi-currency conversion: USD → IDR/VND/PHP<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment processed successfully across all markets<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Initiating cross-browser validation sequence...`,
+                en: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Initializing global payment test matrix<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Authentication verified - User GLOBAL_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Testing $2,500 USD payment<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment processed successfully<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Cross-browser validation...`,
                 
-                id: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Inisialisasi matriks tes pembayaran global untuk operasi internasional<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">SELENIUM</span> Grid multi-browser diinisialisasi - Chrome v120, Firefox v118, Edge v119, Safari v16<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Autentikasi multi-faktor enterprise terverifikasi - Pengguna Tes ID_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Memulai tes pembayaran Indonesia 38,750,000 IDR<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Konversi multi-mata uang real-time: USD → IDR/VND/PHP<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Pembayaran diproses dengan sukses di semua pasar<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Memulai urutan validasi lintas browser...`,
+                id: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Inisialisasi matriks tes pembayaran global<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Autentikasi terverifikasi - User ID_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Tes pembayaran 38,750,000 IDR<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Pembayaran berhasil diproses<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Validasi lintas browser...`,
                 
-                vn: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Khởi tạo ma trận kiểm thử thanh toán toàn cầu cho hoạt động quốc tế<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">SELENIUM</span> Grid đa trình duyệt đã được khởi tạo - Chrome v120, Firefox v118, Edge v119, Safari v16<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Xác thực đa yếu tố doanh nghiệp đã được xác minh - Người dùng VN_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Bắt đầu kiểm thử thanh toán Việt Nam 2,500,000 VND<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Chuyển đổi đa tiền tệ thời gian thực: USD → IDR/VND/PHP<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Thanh toán đã được xử lý thành công trên tất cả thị trường<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Bắt đầu chuỗi xác thực đa trình duyệt...`,
+                vn: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Khởi tạo ma trận kiểm thử thanh toán<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Xác thực thành công - User VN_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Kiểm thử 2,500,000 VND<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Thanh toán thành công<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Xác thực đa trình duyệt...`,
                 
-                ph: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Nagsisimula ng global payment test matrix para sa international operations<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">SELENIUM</span> Multi-browser grid na-initialize - Chrome v120, Firefox v118, Edge v119, Safari v16<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Enterprise multi-factor authentication na-verify - Test User PH_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Nagsisimula ng Philippines payment test ng 125,000 PHP<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Real-time multi-currency conversion: USD → IDR/VND/PHP<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment na-process nang matagumpay sa lahat ng markets<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Nagsisimula ng cross-browser validation sequence...`
+                ph: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Nagsisimula ng payment test matrix<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Authentication verified - User PH_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Testing 125,000 PHP payment<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment successful<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Cross-browser validation...`
             };
             
             consoleContent.innerHTML = consoleMessages[lang];
         }
 
-        // Enhanced Particle System
+        // Particle System
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 40;
+            const particleCount = window.innerWidth < 768 ? 20 : 40;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1945,21 +1951,17 @@
             }
         }
 
-        // Enhanced Console Simulation with language awareness
+        // Console Simulation
         const nexusConsole = document.getElementById('nexusConsole');
         const nexusMessages = [
-            '<span class="log-timestamp">[14:23:27]</span> <span class="log-info">AI</span> Advanced fraud detection neural network optimization in progress',
-            '<span class="log-timestamp">[14:23:28]</span> <span class="log-info">PERF</span> API response time analysis: 1.2s average across 15+ international endpoints',
-            '<span class="log-timestamp">[14:23:29]</span> <span class="log-success">MERCHANT</span> Shopee global integration validation completed successfully',
-            '<span class="log-timestamp">[14:23:30]</span> <span class="log-info">SECURITY</span> Enhanced encryption validation initiated for international transactions',
-            '<span class="log-timestamp">[14:23:31]</span> <span class="log-warning">ANOMALY</span> Unusual transaction pattern detected - Machine learning model triggered',
-            '<span class="log-timestamp">[14:23:32]</span> <span class="log-success">AI</span> Pattern analysis complete - False positive rate: 0.02% (Optimal)',
-            '<span class="log-timestamp">[14:23:33]</span> <span class="log-info">REGULATORY</span> Multi-country compliance check initiated for all ASEAN markets',
-            '<span class="log-timestamp">[14:23:34]</span> <span class="log-success">COMPLIANCE</span> All regulatory requirements satisfied - Global grade security verified',
-            '<span class="log-timestamp">[14:23:35]</span> <span class="log-info">GRID</span> Cross-browser testing complete - Chrome, Firefox, Edge, Safari: 100% compatibility',
-            '<span class="log-timestamp">[14:23:36]</span> <span class="log-info">LOAD</span> Performance testing initiated - Simulating 15,000+ concurrent international users',
-            '<span class="log-timestamp">[14:23:37]</span> <span class="log-warning">TIMEOUT</span> Edge browser latency spike detected - Auto-retry mechanism activated',
-            '<span class="log-timestamp">[14:23:38]</span> <span class="log-success">RECOVERY</span> System auto-recovery successful - Full operational capacity restored'
+            '<span class="log-timestamp">[14:23:27]</span> <span class="log-info">AI</span> Fraud detection optimization',
+            '<span class="log-timestamp">[14:23:28]</span> <span class="log-info">PERF</span> API analysis: 1.2s avg',
+            '<span class="log-timestamp">[14:23:29]</span> <span class="log-success">MERCHANT</span> Integration validated',
+            '<span class="log-timestamp">[14:23:30]</span> <span class="log-info">SECURITY</span> Encryption validation',
+            '<span class="log-timestamp">[14:23:31]</span> <span class="log-warning">ANOMALY</span> Pattern detected',
+            '<span class="log-timestamp">[14:23:32]</span> <span class="log-success">AI</span> Analysis complete',
+            '<span class="log-timestamp">[14:23:33]</span> <span class="log-info">REGULATORY</span> Compliance check',
+            '<span class="log-timestamp">[14:23:34]</span> <span class="log-success">COMPLIANCE</span> Requirements satisfied'
         ];
 
         let nexusMessageIndex = 0;
@@ -1971,38 +1973,36 @@
             } else {
                 nexusMessageIndex = 0;
                 const lines = nexusConsole.innerHTML.split('<br>');
-                nexusConsole.innerHTML = lines.slice(-14).join('<br>');
+                nexusConsole.innerHTML = lines.slice(-10).join('<br>');
             }
-        }, 3000);
+        }, 2500);
 
-        // Enhanced Metric Updates with advanced animations
+        // Metric Updates
         setInterval(() => {
             const passedTests = document.getElementById('passedTests');
             const currentValue = parseInt(passedTests.textContent.replace(',', ''));
-            const increment = Math.floor(Math.random() * 7) + 2;
+            const increment = Math.floor(Math.random() * 5) + 1;
             const newValue = currentValue + increment;
             
-            passedTests.style.transform = 'scale(1.15) rotateY(10deg)';
-            passedTests.style.filter = 'brightness(1.5)';
+            passedTests.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 passedTests.textContent = newValue.toLocaleString();
-                passedTests.style.transform = 'scale(1) rotateY(0deg)';
-                passedTests.style.filter = 'brightness(1)';
-            }, 300);
-        }, 8000);
+                passedTests.style.transform = 'scale(1)';
+            }, 200);
+        }, 7000);
 
-        // Enhanced Progress Bar Updates with smoother animations
+        // Progress Bar Updates
         setInterval(() => {
             const progressBars = document.querySelectorAll('.nexus-progress-bar');
             progressBars.forEach((bar, index) => {
                 const currentWidth = parseInt(bar.style.width) || 50;
-                const variation = Math.floor(Math.random() * 8) - 4;
-                const newWidth = Math.max(35, Math.min(100, currentWidth + variation));
+                const variation = Math.floor(Math.random() * 6) - 3;
+                const newWidth = Math.max(40, Math.min(100, currentWidth + variation));
                 bar.style.width = newWidth + '%';
             });
-        }, 10000);
+        }, 8000);
 
-        // Enhanced Flow Step Progression with advanced timing
+        // Flow Step Progression
         setInterval(() => {
             const steps = document.querySelectorAll('.flow-step');
             const activeStep = document.querySelector('.flow-step.active');
@@ -2021,65 +2021,39 @@
                     else step.classList.add('pending');
                 });
             }
-        }, 6000);
+        }, 5000);
 
-        // Test Duration Counter
-        let testDuration = 83;
-        setInterval(() => {
-            testDuration++;
-            const minutes = Math.floor(testDuration / 60);
-            const seconds = testDuration % 60;
-            document.getElementById('testDuration').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }, 1000);
-
-        // Initialize Advanced System
+        // Initialize System
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             
             // Set initial language to English
             switchLanguage('en');
             
-            // Enhanced card hover effects
+            // Card hover effects
             document.querySelectorAll('.nexus-card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.filter = 'brightness(1.1) saturate(1.2)';
+                    this.style.filter = 'brightness(1.05)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.filter = 'brightness(1) saturate(1)';
+                    this.style.filter = 'brightness(1)';
                 });
             });
 
-            // Enhanced interactive elements
-            document.querySelectorAll('.neon-badge').forEach(badge => {
-                badge.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05) rotateZ(2deg)';
-                });
-                
-                badge.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1) rotateZ(0deg)';
-                });
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Recreate particles on resize
+                const particlesContainer = document.getElementById('particles');
+                particlesContainer.innerHTML = '';
+                createParticles();
             });
         });
 
-        // Enhanced Error Handling
+        // Error Handling
         window.addEventListener('error', function(e) {
-            console.log('Advanced system error handled:', e.message);
+            console.log('System error handled:', e.message);
         });
-
-        // Enhanced Performance Monitoring
-        const performanceObserver = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-                if (entry.entryType === 'navigation') {
-                    console.log('Page load performance:', entry.loadEventEnd - entry.loadEventStart, 'ms');
-                }
-            }
-        });
-        
-        if (typeof PerformanceObserver !== 'undefined') {
-            performanceObserver.observe({entryTypes: ['navigation']});
-        }
     </script>
 </body>
 </html>
