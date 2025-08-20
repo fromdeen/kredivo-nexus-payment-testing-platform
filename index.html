@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kredivo Nexus Payment Testing Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-neon: #00ff88;
+            --secondary-neon: #ff0080;
+            --accent-neon: #0080ff;
+            --warning-neon: #ffff00;
+            --danger-neon: #ff4444;
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --bg-card: rgba(15, 15, 25, 0.6);
+            --border-glow: rgba(0, 255, 136, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #b8c2f0;
+            --text-muted: #6b7891;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 20px rgba(0, 255, 136, 0.2);
+            --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Futuristic Animated Background */
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%),
+                        radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 70%),
+                        radial-gradient(ellipse at 20% 80%, rgba(0, 128, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            box-shadow: 0 0 6px var(--primary-neon);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-glow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+            animation: scanline 3s ease-in-out infinite;
+        }
+
+        @keyframes scanline {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            filter: brightness(1.3);
+            transform: scale(1.05);
+        }
+
+        /* Quantum Cards */
+        .quantum-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .quantum-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-glow), var(--shadow-large);
+        }
+
+        .quantum-card:hover::before {
+            left: 100%;
+        }
+
+        /* Holographic Metrics */
+        .metric-display {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .metric-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
+            transition: all 0.3s ease;
+        }
+
+        .metric-display:hover .metric-icon {
+            transform: scale(1.1) rotateY(15deg);
+            filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8));
+        }
+
+        .metric-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary-neon), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Hologram Tooltip System */
+        .holo-tooltip {
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.9), rgba(0, 128, 255, 0.9));
+            color: var(--bg-dark);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .holo-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: rgba(0, 255, 136, 0.9);
+        }
+
+        .tooltip-container:hover .holo-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* Neon Status Badges */
+        .neon-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .neon-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .neon-badge:hover::before {
+            left: 100%;
+        }
+
+        .badge-success {
+            background: linear-gradient(45deg, var(--primary-neon), #00cc66);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .badge-danger {
+            background: linear-gradient(45deg, var(--danger-neon), #ff6666);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+        }
+
+        .badge-warning {
+            background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.4);
+            animation: pulse-warning 2s infinite;
+        }
+
+        @keyframes pulse-warning {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 0, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 255, 0, 0.8); }
+        }
+
+        /* Quantum Flow Visualization */
+        .flow-container {
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .flow-step {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .flow-step.completed {
+            background: linear-gradient(45deg, var(--primary-neon), #00cc66);
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+            transform: scale(1.1);
+        }
+
+        .flow-step.completed::before {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        .flow-step.active {
+            background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.6);
+            animation: pulse-active 2s infinite;
+        }
+
+        .flow-step.pending {
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        .flow-step:hover {
+            transform: scale(1.15) rotateY(10deg);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-active {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 255, 0, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(255, 255, 0, 1); }
+        }
+
+        /* Quantum Progress Bars */
+        .quantum-progress {
+            height: 12px;
+            border-radius: 10px;
+            background: var(--bg-darker);
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .quantum-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: progress-scan 2s ease-in-out infinite;
+        }
+
+        @keyframes progress-scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .quantum-progress-bar {
+            border-radius: 10px;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-progress-bar.success {
+            background: linear-gradient(90deg, var(--primary-neon), #00cc66);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .quantum-progress-bar.warning {
+            background: linear-gradient(90deg, var(--warning-neon), #ffcc00);
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+        }
+
+        .quantum-progress-bar.info {
+            background: linear-gradient(90deg, var(--accent-neon), #00ccff);
+            box-shadow: 0 0 15px rgba(0, 128, 255, 0.5);
+        }
+
+        /* Holographic Console */
+        .holo-console {
+            background: linear-gradient(135deg, var(--bg-darker) 0%, rgba(0, 20, 40, 0.8) 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(0, 255, 136, 0.2);
+        }
+
+        .console-header {
+            background: linear-gradient(90deg, var(--bg-darker), rgba(0, 255, 136, 0.1), var(--bg-darker));
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            border-bottom: 1px solid var(--border-glow);
+            position: relative;
+        }
+
+        .console-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+            animation: header-scan 2s ease-in-out infinite;
+        }
+
+        @keyframes header-scan {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .holo-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .holo-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .dot-red { background: var(--danger-neon); color: var(--danger-neon); }
+        .dot-yellow { background: var(--warning-neon); color: var(--warning-neon); }
+        .dot-green { background: var(--primary-neon); color: var(--primary-neon); }
+
+        .console-content {
+            padding: 1.5rem;
+            height: calc(100% - 50px);
+            overflow-y: auto;
+            color: var(--primary-neon);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .console-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 136, 0.03) 2px,
+                rgba(0, 255, 136, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        .log-timestamp { color: var(--text-muted); }
+        .log-info { color: var(--accent-neon); }
+        .log-success { color: var(--primary-neon); }
+        .log-warning { color: var(--warning-neon); }
+        .log-error { color: var(--danger-neon); }
+
+        /* Country Flag Enhancement */
+        .quantum-flag {
+            width: 32px;
+            height: 22px;
+            border-radius: 6px;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quantum-flag:hover {
+            transform: scale(1.1) rotateY(15deg);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Currency Badge Enhancement */
+        .quantum-currency {
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            color: var(--bg-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .quantum-currency:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Table Enhancement */
+        .quantum-table {
+            color: var(--text-primary);
+            background: transparent;
+        }
+
+        .quantum-table thead th {
+            background: var(--glass-bg);
+            border: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 1.2rem;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .quantum-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .quantum-table tbody tr:hover {
+            background: rgba(0, 255, 136, 0.05);
+            transform: scale(1.01);
+            box-shadow: 0 2px 10px rgba(0, 255, 136, 0.1);
+        }
+
+        .quantum-table tbody td {
+            border: none;
+            padding: 1.2rem;
+            vertical-align: middle;
+        }
+
+        /* Compliance Indicators */
+        .quantum-indicator {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .quantum-indicator::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .indicator-compliant {
+            background: var(--primary-neon);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            animation: compliant-pulse 3s infinite;
+        }
+
+        .indicator-pending {
+            background: var(--warning-neon);
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+            animation: pending-pulse 2s infinite;
+        }
+
+        .indicator-failed {
+            background: var(--danger-neon);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+        }
+
+        @keyframes compliant-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 136, 0.8); }
+        }
+
+        @keyframes pending-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 0, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 255, 0, 0.8); }
+        }
+
+        /* Loading Animation */
+        .quantum-loader {
+            height: 4px;
+            background: var(--bg-darker);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quantum-loader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+            animation: quantum-load 2s ease-in-out infinite;
+        }
+
+        @keyframes quantum-load {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Dropdown Enhancement */
+        .quantum-dropdown {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            box-shadow: var(--shadow-glow), var(--shadow-large);
+            overflow: hidden;
+        }
+
+        .quantum-dropdown .dropdown-item {
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+        }
+
+        .quantum-dropdown .dropdown-item:hover {
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            color: var(--primary-neon);
+            transform: translateX(8px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .metric-display {
+                padding: 1.5rem 1rem;
+            }
+            
+            .metric-value {
+                font-size: 2.5rem;
+            }
+            
+            .flow-step {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+            
+            .holo-console {
+                height: 300px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--accent-neon), var(--primary-neon));
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <!-- Quantum Background -->
+    <div class="quantum-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-atom me-2"></i>
+                Kredivo Quantum QA Platform
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f9edbaa2-e8f3-43a5-983a-e2ac0bddcb4a.png" alt="Indonesian flag with red and white horizontal stripes" class="quantum-flag">
+                        Indonesia
+                    </a>
+                    <ul class="dropdown-menu quantum-dropdown">
+                        <li><a class="dropdown-item d-flex align-items-center" href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8999c781-bf77-4606-ba97-8b895a4bbd3b.png" alt="Vietnamese flag with red background and yellow star" class="quantum-flag">
+                            Vietnam
+                        </a></li>
+                        <li><a class="dropdown-item d-flex align-items-center" href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/98b23430-3d14-44f0-9c79-687fdf52cd23.png" alt="Philippine flag with blue and red stripes and white triangle" class="quantum-flag">
+                            Philippines
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Quantum Metrics -->
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="quantum-card metric-display tooltip-container">
+                    <i class="fas fa-check-double metric-icon"></i>
+                    <div class="metric-value" id="passedTests">2,847</div>
+                    <div class="metric-label">Tests Passed</div>
+                    <small class="text-success">+15% this week</small>
+                    <div class="holo-tooltip">Payment flow validation with 99.8% accuracy across all markets</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="quantum-card metric-display tooltip-container">
+                    <i class="fas fa-exclamation-circle metric-icon"></i>
+                    <div class="metric-value text-danger">23</div>
+                    <div class="metric-label">Tests Failed</div>
+                    <small class="text-danger">-45% this week</small>
+                    <div class="holo-tooltip">Network timeout issues resolved, fraud detection optimized</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="quantum-card metric-display tooltip-container">
+                    <i class="fas fa-sync-alt metric-icon fa-spin"></i>
+                    <div class="metric-value text-warning">12</div>
+                    <div class="metric-label">Currently Running</div>
+                    <small class="text-warning">Live monitoring</small>
+                    <div class="holo-tooltip">Real-time Selenium automation across Vietnam, Philippines & Indonesia</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="quantum-card metric-display tooltip-container">
+                    <i class="fas fa-chart-line metric-icon"></i>
+                    <div class="metric-value text-success">99.2%</div>
+                    <div class="metric-label">Success Rate</div>
+                    <small class="text-success">Target: 99.5%</small>
+                    <div class="holo-tooltip">Platform reliability maintained across 3 international markets</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Payment Flow -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mb-4">
+                <div class="quantum-card">
+                    <div class="card-header bg-transparent border-0 p-4">
+                        <h5 class="mb-0 d-flex align-items-center section-header">
+                            <i class="fas fa-network-wired me-3"></i>
+                            Quantum Payment Flow - Vietnam Market
+                            <div class="quantum-loader ms-auto" style="width: 120px;"></div>
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="flow-container">
+                            <div class="row text-center">
+                                <div class="col-2">
+                                    <div class="flow-step completed tooltip-container">
+                                        <i class="fas fa-shield-check"></i>
+                                        <div class="holo-tooltip">Multi-factor authentication verified</div>
+                                    </div>
+                                    <small class="text-success">Auth Verified</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="flow-step completed tooltip-container">
+                                        <i class="fas fa-calculator"></i>
+                                        <div class="holo-tooltip">Amount validation & fraud detection passed</div>
+                                    </div>
+                                    <small class="text-success">Amount Valid</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="flow-step completed tooltip-container">
+                                        <i class="fas fa-exchange-alt"></i>
+                                        <div class="holo-tooltip">Real-time USD→VND conversion executed</div>
+                                    </div>
+                                    <small class="text-success">Currency Convert</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="flow-step active tooltip-container">
+                                        <i class="fas fa-university"></i>
+                                        <div class="holo-tooltip">Processing through State Bank of Vietnam gateway</div>
+                                    </div>
+                                    <small class="text-warning">Bank Gateway</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="flow-step pending tooltip-container">
+                                        <i class="fas fa-certificate"></i>
+                                        <div class="holo-tooltip">Awaiting bank confirmation response</div>
+                                    </div>
+                                    <small class="text-muted">Confirmation</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="flow-step pending tooltip-container">
+                                        <i class="fas fa-handshake"></i>
+                                        <div class="holo-tooltip">Final settlement to merchant account</div>
+                                    </div>
+                                    <small class="text-muted">Settlement</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h6 class="mb-4 section-header">Live Test Session Details:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Test ID:</strong> <code class="text-primary">VN_QUANTUM_001_20240115</code></p>
+                                    <p><strong>Amount:</strong> <span class="text-success">2,500,000 VND</span></p>
+                                    <p><strong>Merchant:</strong> Shopee Vietnam</p>
+                                    <p><strong>Test Type:</strong> Cross-browser automation</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Currency Pair:</strong> USD → VND</p>
+                                    <p><strong>Exchange Rate:</strong> 1 USD = 24,350 VND</p>
+                                    <p><strong>Status:</strong> <span class="neon-badge badge-warning">Processing Gateway</span></p>
+                                    <p><strong>Duration:</strong> <span id="testDuration">00:47</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="quantum-card">
+                    <div class="card-header bg-transparent border-0 p-4">
+                        <h5 class="mb-0 section-header">
+                            <i class="fas fa-globe-asia me-2"></i>
+                            Market Coverage Matrix
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="d-flex align-items-center">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/31cd0a84-17fa-4857-8429-22c4d6c80bc1.png" alt="Indonesian flag with red and white horizontal stripes" class="quantum-flag">
+                                    Indonesia
+                                </span>
+                                <span class="quantum-currency">IDR</span>
+                            </div>
+                            <div class="quantum-progress mb-2">
+                                <div class="quantum-progress-bar success" style="width: 98%; height: 100%;"></div>
+                            </div>
+                            <small class="text-success">1,247 merchants • 99.8% uptime</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="d-flex align-items-center">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c045df3a-b978-495d-9c17-f04eeb14da0e.png" alt="Vietnamese flag with red background and yellow star" class="quantum-flag">
+                                    Vietnam
+                                </span>
+                                <span class="quantum-currency">VND</span>
+                            </div>
+                            <div class="quantum-progress mb-2">
+                                <div class="quantum-progress-bar info" style="width: 75%; height: 100%;"></div>
+                            </div>
+                            <small class="text-info">423 merchants • 97.2% uptime</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="d-flex align-items-center">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50afd55b-1fe5-460e-b7a8-2b5f9273c312.png" alt="Philippine flag with blue and red stripes and white triangle" class="quantum-flag">
+                                    Philippines
+                                </span>
+                                <span class="quantum-currency">PHP</span>
+                            </div>
+                            <div class="quantum-progress mb-2">
+                                <div class="quantum-progress-bar warning" style="width: 60%; height: 100%;"></div>
+                            </div>
+                            <small class="text-warning">287 merchants • 94.1% uptime</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Test Results & Compliance -->
+        <div class="row mb-5">
+            <div class="col-lg-6 mb-4">
+                <div class="quantum-card">
+                    <div class="card-header bg-transparent border-0 p-4">
+                        <h5 class="mb-0 section-header">
+                            <i class="fas fa-list-check me-2"></i>
+                            Live Test Execution Matrix
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table quantum-table">
+                                <thead>
+                                    <tr>
+                                        <th>Test Suite</th>
+                                        <th>Market</th>
+                                        <th>Status</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tooltip-container">
+                                        <td>Payment Gateway Integration</td>
+                                        <td><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c1366f1f-0c02-412e-9dd3-6919d01d1615.png" alt="Vietnamese flag with red background and yellow star" class="quantum-flag">VN</td>
+                                        <td><span class="neon-badge badge-success">Passed</span></td>
+                                        <td>1.2s</td>
+                                        <div class="holo-tooltip">API response time optimal, all endpoints validated successfully</div>
+                                    </tr>
+                                    <tr class="tooltip-container">
+                                        <td>Currency Conversion API</td>
+                                        <td><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e84d696-3835-4dbf-b56c-19cd589174a1.png" alt="Philippine flag with blue and red stripes and white triangle" class="quantum-flag">PH</td>
+                                        <td><span class="neon-badge badge-warning">Running</span></td>
+                                        <td>2.1s</td>
+                                        <div class="holo-tooltip">Testing PHP to USD real-time conversion accuracy</div>
+                                    </tr>
+                                    <tr class="tooltip-container">
+                                        <td>Merchant Settlement</td>
+                                        <td><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5161085e-8a81-4fe6-8bef-eb8533686bdd.png" alt="Indonesian flag with red and white horizontal stripes" class="quantum-flag">ID</td>
+                                        <td><span class="neon-badge badge-success">Passed</span></td>
+                                        <td>0.8s</td>
+                                        <div class="holo-tooltip">Batch settlement processed for 145 transactions</div>
+                                    </tr>
+                                    <tr class="tooltip-container">
+                                        <td>Fraud Detection AI</td>
+                                        <td><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/619b9f6d-da86-49a7-8182-92de99a7b040.png" alt="Vietnamese flag with red background and yellow star" class="quantum-flag">VN</td>
+                                        <td><span class="neon-badge badge-danger">Failed</span></td>
+                                        <td>3.4s</td>
+                                        <div class="holo-tooltip">ML model accuracy below threshold, retraining initiated</div>
+                                    </tr>
+                                    <tr class="tooltip-container">
+                                        <td>Compliance Validation</td>
+                                        <td><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ede20d6-45e7-4b09-8b34-8919e8eee0a4.png" alt="Philippine flag with blue and red stripes and white triangle" class="quantum-flag">PH</td>
+                                        <td><span class="neon-badge badge-success">Passed</span></td>
+                                        <td>1.7s</td>
+                                        <div class="holo-tooltip">BSP regulatory requirements fully satisfied</div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="quantum-card">
+                    <div class="card-header bg-transparent border-0 p-4">
+                        <h5 class="mb-0 section-header">
+                            <i class="fas fa-shield-virus me-2"></i>
+                            Regulatory Compliance Matrix
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="mb-4 tooltip-container">
+                            <h6 class="d-flex align-items-center">
+                                <span class="quantum-indicator indicator-compliant"></span>
+                                Bank Indonesia (BI) Compliance
+                            </h6>
+                            <p class="text-secondary mb-2">PCI DSS Level 1 • Anti-Money Laundering • ISO 27001</p>
+                            <small class="text-success">Last quantum audit: Jan 10, 2024 - Full compliance achieved</small>
+                            <div class="holo-tooltip">Advanced security protocols verified, fraud detection AI optimized</div>
+                        </div>
+                        
+                        <div class="mb-4 tooltip-container">
+                            <h6 class="d-flex align-items-center">
+                                <span class="quantum-indicator indicator-compliant"></span>
+                                State Bank of Vietnam (SBV)
+                            </h6>
+                            <p class="text-secondary mb-2">Payment Service License • Enhanced KYC • Cross-border regulations</p>
+                            <small class="text-success">Last audit: Jan 8, 2024 - Quantum security verified</small>
+                            <div class="holo-tooltip">Vietnamese banking integration protocols successfully implemented</div>
+                        </div>
+                        
+                        <div class="mb-4 tooltip-container">
+                            <h6 class="d-flex align-items-center">
+                                <span class="quantum-indicator indicator-pending"></span>
+                                Bangko Sentral ng Pilipinas (BSP)
+                            </h6>
+                            <p class="text-secondary mb-2">E-Money License Application • Digital wallet compliance</p>
+                            <small class="text-warning">Quantum review pending - Expected: Jan 25, 2024</small>
+                            <div class="holo-tooltip">Philippine central bank quantum security review in progress</div>
+                        </div>
+                        
+                        <div class="mb-4 tooltip-container">
+                            <h6 class="d-flex align-items-center">
+                                <span class="quantum-indicator indicator-compliant"></span>
+                                International Quantum Standards
+                            </h6>
+                            <p class="text-secondary mb-2">ISO 27001 • SOC 2 Type II • GDPR • Quantum encryption ready</p>
+                            <small class="text-success">All certifications current • Next-gen security protocols active</small>
+                            <div class="holo-tooltip">Global quantum-safe encryption and privacy standards maintained</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Console -->
+        <div class="row">
+            <div class="col-12">
+                <div class="quantum-card">
+                    <div class="card-header bg-transparent border-0 p-4">
+                        <h5 class="mb-0 section-header">
+                            <i class="fas fa-terminal me-2"></i>
+                            Quantum Test Console - Advanced Selenium Grid Execution
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="holo-console">
+                            <div class="console-header">
+                                <div class="holo-dots">
+                                    <div class="holo-dot dot-red"></div>
+                                    <div class="holo-dot dot-yellow"></div>
+                                    <div class="holo-dot dot-green"></div>
+                                </div>
+                                <span class="ms-3 text-muted">Kredivo Quantum Terminal v3.2.1</span>
+                                <span class="ms-auto text-primary">◉ LIVE</span>
+                            </div>
+                            <div class="console-content" id="quantumConsole">
+<span class="log-timestamp">[2024-01-15 14:23:15]</span> <span class="log-info">QUANTUM</span> Initializing payment flow test matrix for Vietnam market<br>
+<span class="log-timestamp">[2024-01-15 14:23:16]</span> <span class="log-info">SELENIUM</span> WebDriver grid initialized - Chrome v120, Firefox v118, Edge v119<br>
+<span class="log-timestamp">[2024-01-15 14:23:17]</span> <span class="log-info">NETWORK</span> Establishing secure tunnel to Kredivo Vietnam portal<br>
+<span class="log-timestamp">[2024-01-15 14:23:18]</span> <span class="log-success">AUTH</span> Multi-factor authentication verified - Test User VN_QUANTUM_001<br>
+<span class="log-timestamp">[2024-01-15 14:23:19]</span> <span class="log-info">PAYMENT</span> Initiating quantum payment of 2,500,000 VND<br>
+<span class="log-timestamp">[2024-01-15 14:23:20]</span> <span class="log-info">FOREX</span> Real-time currency conversion: USD 102.66 → VND 2,500,000<br>
+<span class="log-timestamp">[2024-01-15 14:23:21]</span> <span class="log-info">GATEWAY</span> State Bank of Vietnam gateway response received<br>
+<span class="log-timestamp">[2024-01-15 14:23:22]</span> <span class="log-info">VALIDATION</span> Transaction ID verified: TXN_VN_QUANTUM_20240115_001247<br>
+<span class="log-timestamp">[2024-01-15 14:23:23]</span> <span class="log-success">SUCCESS</span> Payment processed successfully through quantum channels<br>
+<span class="log-timestamp">[2024-01-15 14:23:24]</span> <span class="log-info">COMPLIANCE</span> Generating SBV regulatory compliance report<br>
+<span class="log-timestamp">[2024-01-15 14:23:25]</span> <span class="log-info">METRICS</span> Test execution completed - Duration: 10.3s, Success rate: 99.2%<br>
+<span class="log-warning">[2024-01-15 14:23:26]</span> <span class="log-warning">QUANTUM</span> Initiating next test sequence - Cross-browser validation...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Quantum Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Enhanced Console Simulation
+        const quantumConsole = document.getElementById('quantumConsole');
+        const quantumMessages = [
+            '<span class="log-timestamp">[2024-01-15 14:23:27]</span> <span class="log-info">AI</span> Fraud detection neural network optimization in progress',
+            '<span class="log-timestamp">[2024-01-15 14:23:28]</span> <span class="log-info">PERF</span> API response time analysis: 1.2s average across 12 endpoints',
+            '<span class="log-timestamp">[2024-01-15 14:23:29]</span> <span class="log-success">MERCHANT</span> Shopee Vietnam integration test completed successfully',
+            '<span class="log-timestamp">[2024-01-15 14:23:30]</span> <span class="log-info">SECURITY</span> Quantum encryption validation initiated',
+            '<span class="log-timestamp">[2024-01-15 14:23:31]</span> <span class="log-warning">ANOMALY</span> Unusual transaction pattern detected - Machine learning model triggered',
+            '<span class="log-timestamp">[2024-01-15 14:23:32]</span> <span class="log-success">AI</span> Pattern analysis complete - False positive rate: 0.02%',
+            '<span class="log-timestamp">[2024-01-15 14:23:33]</span> <span class="log-info">REGULATORY</span> SBV compliance check initiated for Vietnamese operations',
+            '<span class="log-timestamp">[2024-01-15 14:23:34]</span> <span class="log-success">COMPLIANCE</span> All regulatory requirements satisfied - Quantum grade security verified',
+            '<span class="log-timestamp">[2024-01-15 14:23:35]</span> <span class="log-info">GRID</span> Cross-browser testing complete - Chrome, Firefox, Edge compatibility: 100%',
+            '<span class="log-timestamp">[2024-01-15 14:23:36]</span> <span class="log-info">LOAD</span> Performance testing initiated - Simulating 10,000 concurrent users',
+            '<span class="log-timestamp">[2024-01-15 14:23:37]</span> <span class="log-warning">TIMEOUT</span> Edge browser latency spike detected - Auto-retry mechanism activated',
+            '<span class="log-timestamp">[2024-01-15 14:23:38]</span> <span class="log-success">RECOVERY</span> System auto-recovery successful - Full operational capacity restored'
+        ];
+
+        let quantumMessageIndex = 0;
+        setInterval(() => {
+            if (quantumMessageIndex < quantumMessages.length) {
+                quantumConsole.innerHTML += '<br>' + quantumMessages[quantumMessageIndex];
+                quantumConsole.scrollTop = quantumConsole.scrollHeight;
+                quantumMessageIndex++;
+            } else {
+                quantumMessageIndex = 0;
+                const lines = quantumConsole.innerHTML.split('<br>');
+                quantumConsole.innerHTML = lines.slice(-16).join('<br>');
+            }
+        }, 2500);
+
+        // Enhanced Metric Updates with Quantum Effects
+        setInterval(() => {
+            const passedTests = document.getElementById('passedTests');
+            const currentValue = parseInt(passedTests.textContent.replace(',', ''));
+            const increment = Math.floor(Math.random() * 7) + 2;
+            const newValue = currentValue + increment;
+            
+            // Quantum scale animation
+            passedTests.style.transform = 'scale(1.15)';
+            passedTests.style.filter = 'brightness(1.5)';
+            setTimeout(() => {
+                passedTests.textContent = newValue.toLocaleString();
+                passedTests.style.transform = 'scale(1)';
+                passedTests.style.filter = 'brightness(1)';
+            }, 300);
+        }, 8000);
+
+        // Quantum Progress Bar Animations
+        setInterval(() => {
+            const progressBars = document.querySelectorAll('.quantum-progress-bar');
+            progressBars.forEach((bar, index) => {
+                const currentWidth = parseInt(bar.style.width) || 50;
+                const variation = Math.floor(Math.random() * 8) - 4;
+                const newWidth = Math.max(30, Math.min(100, currentWidth + variation));
+                bar.style.width = newWidth + '%';
+            });
+        }, 10000);
+
+        // Quantum Flow Step Progression
+        setInterval(() => {
+            const steps = document.querySelectorAll('.flow-step');
+            const activeStep = document.querySelector('.flow-step.active');
+            const pendingSteps = document.querySelectorAll('.flow-step.pending');
+            
+            if (activeStep && pendingSteps.length > 0) {
+                activeStep.classList.remove('active');
+                activeStep.classList.add('completed');
+                pendingSteps[0].classList.remove('pending');
+                pendingSteps[0].classList.add('active');
+            } else if (pendingSteps.length === 0) {
+                // Reset quantum flow
+                steps.forEach((step, index) => {
+                    step.classList.remove('completed', 'active', 'pending');
+                    if (index < 3) step.classList.add('completed');
+                    else if (index === 3) step.classList.add('active');
+                    else step.classList.add('pending');
+                });
+            }
+        }, 6000);
+
+        // Test Duration Counter
+        let testDuration = 47;
+        setInterval(() => {
+            testDuration++;
+            const minutes = Math.floor(testDuration / 60);
+            const seconds = testDuration % 60;
+            document.getElementById('testDuration').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+
+        // Initialize Quantum System
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add quantum glow effects on hover
+            document.querySelectorAll('.quantum-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.filter = 'brightness(1.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.filter = 'brightness(1)';
+                });
+            });
+        });
+
+        // Quantum Error Handling
+        window.addEventListener('error', function(e) {
+            console.log('Quantum system error handled:', e.message);
+        });
+    </script>
+</body>
+</html>
+
