@@ -18,7 +18,7 @@
             --cyan-neon: #00ffff;
             --bg-dark: #0a0a0f;
             --bg-darker: #050508;
-            --bg-card: rgba(15, 15, 25, 0.8);
+            --bg-card: rgba(15, 15, 25, 0.85);
             --border-glow: rgba(0, 255, 136, 0.4);
             --text-primary: #ffffff;
             --text-secondary: #b8c2f0;
@@ -44,7 +44,7 @@
             min-height: 100vh;
         }
 
-        /* Advanced Animated Background */
+        /* Cinematic Animated Background */
         .nexus-bg {
             position: fixed;
             top: 0;
@@ -53,18 +53,38 @@
             height: 100%;
             z-index: -2;
             background: 
-                radial-gradient(ellipse at center, rgba(0, 255, 136, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(0, 128, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(255, 0, 128, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 60%, rgba(138, 43, 226, 0.04) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite alternate;
+                radial-gradient(ellipse 150% 100% at 50% 0%, rgba(0, 255, 136, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse 120% 80% at 100% 20%, rgba(0, 128, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 60% at 0% 80%, rgba(255, 0, 128, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse 80% 120% at 80% 100%, rgba(138, 43, 226, 0.06) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 30%, rgba(0, 255, 136, 0.02) 70%);
+            animation: cinematicBg 12s ease-in-out infinite alternate;
         }
 
-        @keyframes bgPulse {
-            0% { filter: brightness(1) hue-rotate(0deg); }
-            100% { filter: brightness(1.2) hue-rotate(10deg); }
+        @keyframes cinematicBg {
+            0% { 
+                filter: brightness(1) hue-rotate(0deg) saturate(1);
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                filter: brightness(1.1) hue-rotate(5deg) saturate(1.1);
+                transform: scale(1.02) rotate(0.5deg);
+            }
+            50% {
+                filter: brightness(1.2) hue-rotate(10deg) saturate(1.2);
+                transform: scale(1.05) rotate(1deg);
+            }
+            75% {
+                filter: brightness(1.15) hue-rotate(15deg) saturate(1.15);
+                transform: scale(1.03) rotate(0.5deg);
+            }
+            100% { 
+                filter: brightness(1.3) hue-rotate(20deg) saturate(1.3);
+                transform: scale(1.01) rotate(0deg);
+            }
         }
 
+        /* Cinematic Particles */
         .particles {
             position: fixed;
             top: 0;
@@ -77,39 +97,70 @@
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary-neon);
             border-radius: 50%;
-            animation: float 20s infinite linear;
-            box-shadow: 0 0 6px var(--primary-neon);
+            animation: cinematicFloat 25s infinite linear;
+            background: var(--primary-neon);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .particle:nth-child(odd) {
+            width: 3px;
+            height: 3px;
+            background: var(--primary-neon);
+            animation-duration: 30s;
         }
 
         .particle:nth-child(even) {
+            width: 2px;
+            height: 2px;
             background: var(--accent-neon);
-            box-shadow: 0 0 6px var(--accent-neon);
-            animation-duration: 25s;
+            animation-duration: 35s;
         }
 
         .particle:nth-child(3n) {
+            width: 4px;
+            height: 4px;
             background: var(--purple-neon);
-            box-shadow: 0 0 6px var(--purple-neon);
-            animation-duration: 18s;
+            animation-duration: 25s;
         }
 
-        @keyframes float {
+        .particle:nth-child(4n) {
+            width: 1px;
+            height: 1px;
+            background: var(--cyan-neon);
+            animation-duration: 40s;
+        }
+
+        @keyframes cinematicFloat {
             0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+                transform: translateY(100vh) translateX(-50px) rotate(0deg) scale(0);
                 opacity: 0;
             }
-            10% {
+            5% {
                 opacity: 1;
+                transform: translateY(95vh) translateX(-40px) rotate(18deg) scale(1);
             }
-            90% {
+            15% {
+                transform: translateY(85vh) translateX(-20px) rotate(54deg) scale(1.2);
+            }
+            30% {
+                transform: translateY(70vh) translateX(10px) rotate(108deg) scale(0.8);
+            }
+            50% {
+                transform: translateY(50vh) translateX(40px) rotate(180deg) scale(1.5);
+            }
+            70% {
+                transform: translateY(30vh) translateX(70px) rotate(252deg) scale(0.6);
+            }
+            85% {
+                transform: translateY(15vh) translateX(90px) rotate(306deg) scale(1.1);
+            }
+            95% {
                 opacity: 1;
+                transform: translateY(5vh) translateX(100px) rotate(342deg) scale(0.4);
             }
             100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                transform: translateY(-10vh) translateX(120px) rotate(360deg) scale(0);
                 opacity: 0;
             }
         }
@@ -130,36 +181,56 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), transparent);
-            animation: navScan 4s ease-in-out infinite;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), var(--purple-neon), transparent);
+            animation: cinematicScan 6s ease-in-out infinite;
         }
 
-        @keyframes navScan {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+        @keyframes cinematicScan {
+            0%, 100% { 
+                opacity: 0.2;
+                transform: scaleX(0.5);
+            }
+            50% { 
+                opacity: 1;
+                transform: scaleX(1.2);
+            }
         }
 
         .navbar-brand {
             font-weight: 800;
             font-size: 1.2rem;
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon), var(--cyan-neon));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             transition: all 0.3s ease;
-            animation: brandGlow 3s ease-in-out infinite alternate;
+            animation: cinematicBrandGlow 4s ease-in-out infinite;
         }
 
-        @keyframes brandGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        @keyframes cinematicBrandGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: brightness(1);
+            }
+            25% {
+                background-position: 25% 75%;
+                filter: brightness(1.2);
+            }
+            50% { 
+                background-position: 50% 100%;
+                filter: brightness(1.5);
+            }
+            75% {
+                background-position: 75% 25%;
+                filter: brightness(1.3);
+            }
         }
 
         .navbar-brand:hover {
-            filter: brightness(1.3);
-            transform: scale(1.03);
+            filter: brightness(1.5) saturate(1.3);
+            transform: scale(1.05);
         }
 
         /* Language Switcher - Fully Responsive */
@@ -197,15 +268,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+            transition: left 0.8s ease;
         }
 
         .lang-btn:hover {
             color: var(--primary-neon);
             border-color: var(--border-glow);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            transform: translateY(-3px) scale(1.08);
         }
 
         .lang-btn:hover::before {
@@ -216,31 +287,31 @@
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
             color: var(--bg-dark);
             border-color: var(--primary-neon);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
-            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            transform: scale(1.05);
         }
 
         .lang-btn.active:hover {
             color: var(--bg-dark);
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        /* CORRECT Flag Styles - Responsive */
+        /* CORRECT Flag Styles - Fixed Indonesia and Philippines */
         .nexus-flag {
             width: 18px;
             height: 12px;
             border-radius: 2px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
         }
 
-        /* Indonesia Flag - Red top, White bottom */
+        /* Indonesia Flag - FIXED: Red top, White bottom */
         .flag-id {
-            background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+            background: linear-gradient(to bottom, #ce1126 0%, #ce1126 50%, #ffffff 50%, #ffffff 100%);
         }
         
         /* Vietnam Flag - Red background with yellow star */
@@ -260,9 +331,10 @@
             text-shadow: 0 0 2px rgba(255, 255, 0, 0.8);
         }
         
-        /* Philippines Flag - Blue top, Red bottom, White triangle */
+        /* Philippines Flag - FIXED: Blue top, Red bottom, White triangle with sun */
         .flag-ph {
-            background: linear-gradient(to bottom, #0038a8 50%, #ce1126 50%);
+            background: linear-gradient(to bottom, #0038a8 0%, #0038a8 50%, #ce1126 50%, #ce1126 100%);
+            position: relative;
         }
         
         .flag-ph::before {
@@ -273,13 +345,24 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 6px 0 6px 8px;
+            border-width: 6px 0 6px 9px;
             border-color: transparent transparent transparent #ffffff;
         }
 
+        .flag-ph::after {
+            content: '☀';
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: #fcd116;
+            font-size: 5px;
+            font-weight: bold;
+        }
+
         .nexus-flag:hover {
-            transform: scale(1.05);
-            box-shadow: 0 3px 8px rgba(0, 255, 136, 0.3);
+            transform: scale(1.1) rotateY(10deg);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
         }
 
         /* Language Switching Animation */
@@ -297,10 +380,10 @@
         /* Advanced Cards - Mobile Optimized */
         .nexus-card {
             background: var(--bg-card);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-glow);
@@ -314,12 +397,47 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.08), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.12), transparent);
+            transition: left 1s ease;
+        }
+
+        .nexus-card::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon), var(--cyan-neon));
+            background-size: 400% 400%;
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: cinematicBorder 8s ease-in-out infinite;
+        }
+
+        @keyframes cinematicBorder {
+            0%, 100% { 
+                background-position: 0% 50%;
+                opacity: 0;
+            }
+            25% {
+                background-position: 25% 75%;
+                opacity: 0.3;
+            }
+            50% { 
+                background-position: 100% 50%;
+                opacity: 0.6;
+            }
+            75% {
+                background-position: 75% 25%;
+                opacity: 0.4;
+            }
         }
 
         .nexus-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--border-glow);
             box-shadow: var(--shadow-glow), var(--shadow-large);
         }
@@ -328,85 +446,112 @@
             left: 100%;
         }
 
+        .nexus-card:hover::after {
+            opacity: 0.8;
+        }
+
         /* Responsive Metrics */
         .metric-display {
             text-align: center;
-            padding: 1rem;
+            padding: 1.2rem;
             position: relative;
         }
 
         .metric-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.8rem;
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon), var(--cyan-neon));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
-            transition: all 0.3s ease;
-            animation: iconShift 3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.6));
+            transition: all 0.4s ease;
+            animation: cinematicIcon 5s ease-in-out infinite;
         }
 
-        @keyframes iconShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        @keyframes cinematicIcon {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.6));
+            }
+            33% {
+                background-position: 33% 66%;
+                filter: drop-shadow(0 0 15px rgba(0, 128, 255, 0.7));
+            }
+            66% { 
+                background-position: 66% 33%;
+                filter: drop-shadow(0 0 12px rgba(138, 43, 226, 0.6));
+            }
         }
 
         .metric-display:hover .metric-icon {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.8));
+            transform: scale(1.15) rotateY(15deg);
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 1));
         }
 
         .metric-value {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            margin-bottom: 0.3rem;
-            background: linear-gradient(45deg, var(--primary-neon), #ffffff, var(--cyan-neon));
-            background-size: 200% 200%;
+            margin-bottom: 0.4rem;
+            background: linear-gradient(45deg, var(--primary-neon), #ffffff, var(--cyan-neon), var(--purple-neon));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            transition: all 0.4s ease;
             line-height: 1.1;
-            animation: valueGlow 2s ease-in-out infinite alternate;
+            animation: cinematicValue 4s ease-in-out infinite;
         }
 
-        @keyframes valueGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        @keyframes cinematicValue {
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: scale(1);
+            }
+            50% { 
+                background-position: 100% 50%;
+                transform: scale(1.05);
+            }
         }
 
         .metric-label {
             color: var(--text-secondary);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             font-weight: 700;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
 
-        /* Responsive Tooltip System */
+        /* Enhanced Tooltip System */
         .holo-tooltip {
             position: absolute;
             bottom: 110%;
             left: 50%;
             transform: translateX(-50%) scale(0);
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.95), rgba(0, 128, 255, 0.95));
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.95), rgba(0, 128, 255, 0.95), rgba(138, 43, 226, 0.95));
+            background-size: 200% 200%;
             color: var(--bg-dark);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.7rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.75rem;
             font-weight: 700;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
-            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
-            backdrop-filter: blur(10px);
-            max-width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+            backdrop-filter: blur(15px);
+            animation: cinematicTooltip 3s ease-in-out infinite;
+            max-width: 280px;
+        }
+
+        @keyframes cinematicTooltip {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .holo-tooltip::after {
@@ -415,30 +560,30 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border: 6px solid transparent;
+            border: 8px solid transparent;
             border-top-color: rgba(0, 255, 136, 0.95);
         }
 
         .tooltip-container:hover .holo-tooltip {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) scale(1) translateY(-5px);
+            transform: translateX(-50%) scale(1) translateY(-8px);
             white-space: normal;
         }
 
-        /* Responsive Status Badges */
+        /* Enhanced Status Badges */
         .neon-badge {
             display: inline-flex;
             align-items: center;
-            padding: 0.3rem 0.6rem;
-            border-radius: 15px;
-            font-size: 0.65rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .neon-badge::before {
@@ -448,8 +593,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
         }
 
         .neon-badge:hover::before {
@@ -459,44 +604,50 @@
         .badge-success {
             background: linear-gradient(45deg, var(--primary-neon), #00cc66);
             color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
 
         .badge-danger {
             background: linear-gradient(45deg, var(--danger-neon), #ff6666);
             color: white;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
         }
 
         .badge-warning {
             background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
             color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
-            animation: pulse-warning 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+            animation: cinematicPulse 3s infinite;
         }
 
-        @keyframes pulse-warning {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 0, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 255, 0, 0.7); }
+        @keyframes cinematicPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(255, 255, 0, 0.9);
+                transform: scale(1.05);
+            }
         }
 
-        /* Responsive Flow Visualization */
+        /* Enhanced Flow Visualization */
         .flow-container {
-            padding: 1.5rem 0;
+            padding: 1.8rem 0;
             position: relative;
         }
 
         .flow-step {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.9rem;
-            margin: 0 auto 0.8rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            margin: 0 auto 1rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
         }
@@ -504,40 +655,47 @@
         .flow-step::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
+            background-size: 200% 200%;
             z-index: -1;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: stepGlow 3s ease-in-out infinite;
+            transition: opacity 0.4s ease;
+            animation: cinematicStepRing 4s ease-in-out infinite;
         }
 
-        @keyframes stepGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes cinematicStepRing {
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: rotate(0deg);
+            }
+            50% { 
+                background-position: 100% 50%;
+                transform: rotate(180deg);
+            }
         }
 
         .flow-step.completed {
             background: linear-gradient(45deg, var(--primary-neon), #00cc66);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
-            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+            transform: scale(1.1);
         }
 
         .flow-step.completed::before {
             opacity: 1;
-            animation: rotate 4s linear infinite;
+            animation: cinematicRotate 5s linear infinite;
         }
 
         .flow-step.active {
             background: linear-gradient(45deg, var(--warning-neon), #ffcc00);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
-            animation: pulse-active 2s infinite;
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+            animation: cinematicActiveStep 3s infinite;
         }
 
         .flow-step.pending {
@@ -547,32 +705,36 @@
         }
 
         .flow-step:hover {
-            transform: scale(1.1);
+            transform: scale(1.2) rotateY(20deg);
         }
 
-        @keyframes rotate {
+        @keyframes cinematicRotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        @keyframes pulse-active {
+        @keyframes cinematicActiveStep {
             0%, 100% { 
-                box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+                box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
                 transform: scale(1.05);
             }
-            50% { 
-                box-shadow: 0 0 30px rgba(255, 255, 0, 1);
+            33% { 
+                box-shadow: 0 0 45px rgba(255, 255, 0, 1);
+                transform: scale(1.15);
+            }
+            66% { 
+                box-shadow: 0 0 35px rgba(255, 255, 0, 0.9);
                 transform: scale(1.1);
             }
         }
 
-        /* Responsive Progress Bars */
+        /* Enhanced Progress Bars */
         .nexus-progress {
-            height: 8px;
-            border-radius: 8px;
+            height: 10px;
+            border-radius: 10px;
             background: var(--bg-darker);
             overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5);
             position: relative;
             margin-bottom: 0.5rem;
         }
@@ -584,58 +746,87 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: progress-scan 3s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: cinematicProgressScan 4s ease-in-out infinite;
         }
 
-        @keyframes progress-scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes cinematicProgressScan {
+            0% { transform: translateX(-100%) scaleX(0.5); }
+            50% { transform: translateX(0%) scaleX(1.2); }
+            100% { transform: translateX(100%) scaleX(0.5); }
         }
 
         .nexus-progress-bar {
-            border-radius: 8px;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+        }
+
+        .nexus-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: cinematicProgressShine 3s ease-in-out infinite;
+        }
+
+        @keyframes cinematicProgressShine {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
         }
 
         .nexus-progress-bar.success {
-            background: linear-gradient(90deg, var(--primary-neon), #00cc66);
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+            background: linear-gradient(90deg, var(--primary-neon), #00cc66, var(--cyan-neon));
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+            animation: cinematicProgressFlow 5s ease-in-out infinite;
         }
 
         .nexus-progress-bar.warning {
-            background: linear-gradient(90deg, var(--warning-neon), #ffcc00);
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
+            background: linear-gradient(90deg, var(--warning-neon), #ffcc00, #ffa500);
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+            animation: cinematicProgressFlow 5s ease-in-out infinite;
         }
 
         .nexus-progress-bar.info {
-            background: linear-gradient(90deg, var(--accent-neon), #00ccff);
-            box-shadow: 0 0 10px rgba(0, 128, 255, 0.4);
+            background: linear-gradient(90deg, var(--accent-neon), #00ccff, var(--purple-neon));
+            background-size: 200% 100%;
+            box-shadow: 0 0 20px rgba(0, 128, 255, 0.6);
+            animation: cinematicProgressFlow 5s ease-in-out infinite;
         }
 
-        /* Responsive Console */
+        @keyframes cinematicProgressFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Enhanced Console with Better Visibility */
         .nexus-console {
-            background: linear-gradient(135deg, var(--bg-darker) 0%, rgba(0, 20, 40, 0.95) 100%);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(5, 5, 8, 0.98) 0%, rgba(0, 20, 40, 0.95) 100%);
+            border: 2px solid var(--border-glow);
+            border-radius: 16px;
             padding: 0;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            height: 300px;
+            font-size: 0.8rem;
+            height: 320px;
             overflow: hidden;
             position: relative;
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--shadow-glow), inset 0 2px 0 rgba(0, 255, 136, 0.3);
         }
 
         .console-header {
-            background: linear-gradient(90deg, var(--bg-darker), rgba(0, 255, 136, 0.1), var(--bg-darker));
-            height: 35px;
+            background: linear-gradient(90deg, rgba(5, 5, 8, 0.98), rgba(0, 255, 136, 0.15), rgba(5, 5, 8, 0.98));
+            height: 45px;
             display: flex;
             align-items: center;
-            padding: 0 1rem;
-            border-bottom: 1px solid var(--border-glow);
+            padding: 0 1.5rem;
+            border-bottom: 2px solid var(--border-glow);
             position: relative;
         }
 
@@ -645,183 +836,305 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
-            animation: header-scan 3s ease-in-out infinite;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), transparent);
+            animation: cinematicHeaderScan 4s ease-in-out infinite;
         }
 
-        @keyframes header-scan {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
+        @keyframes cinematicHeaderScan {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: scaleX(0.8);
+            }
+            50% { 
+                opacity: 1;
+                transform: scaleX(1.3);
+            }
         }
 
         .nexus-dots {
             display: flex;
-            gap: 6px;
+            gap: 10px;
         }
 
         .nexus-dot {
-            width: 10px;
-            height: 10px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            box-shadow: 0 0 8px currentColor;
+            box-shadow: 0 0 15px currentColor;
             transition: all 0.3s ease;
+        }
+
+        .nexus-dot:hover {
+            transform: scale(1.3);
         }
 
         .dot-red { 
             background: var(--danger-neon); 
             color: var(--danger-neon);
-            animation: dotPulse 2s ease-in-out infinite;
+            animation: cinematicDotPulse 3s ease-in-out infinite;
         }
         .dot-yellow { 
             background: var(--warning-neon); 
             color: var(--warning-neon);
-            animation: dotPulse 2s ease-in-out infinite 0.3s;
+            animation: cinematicDotPulse 3s ease-in-out infinite 0.5s;
         }
         .dot-green { 
             background: var(--primary-neon); 
             color: var(--primary-neon);
-            animation: dotPulse 2s ease-in-out infinite 0.6s;
+            animation: cinematicDotPulse 3s ease-in-out infinite 1s;
         }
 
-        @keyframes dotPulse {
+        @keyframes cinematicDotPulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.6;
+                transform: scale(1.2);
+            }
+        }
+
+        /* ENHANCED Console Title Visibility */
+        .console-title {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(45deg, var(--text-primary), var(--primary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .console-status {
+            color: var(--primary-neon);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-shadow: 0 0 8px var(--primary-neon);
+            animation: cinematicStatusBlink 2s ease-in-out infinite;
+        }
+
+        @keyframes cinematicStatusBlink {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+            50% { opacity: 0.7; }
         }
 
         .console-content {
-            padding: 0.8rem;
-            height: calc(100% - 35px);
+            padding: 1rem;
+            height: calc(100% - 45px);
             overflow-y: auto;
             color: var(--primary-neon);
-            line-height: 1.5;
+            line-height: 1.6;
             position: relative;
+            background: rgba(5, 5, 8, 0.3);
+        }
+
+        .console-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(0, 255, 136, 0.03) 3px,
+                rgba(0, 255, 136, 0.03) 6px
+            );
+            pointer-events: none;
         }
 
         .log-timestamp { 
-            color: var(--text-muted); 
-            font-size: 0.65rem; 
+            color: var(--text-secondary); 
+            font-size: 0.7rem; 
             font-weight: 600;
+            text-shadow: 0 0 5px rgba(184, 194, 240, 0.5);
         }
         .log-info { 
             color: var(--accent-neon); 
-            font-weight: 700;
-            text-shadow: 0 0 3px currentColor;
+            font-weight: 800;
+            text-shadow: 0 0 8px currentColor;
         }
         .log-success { 
             color: var(--primary-neon); 
-            font-weight: 700;
-            text-shadow: 0 0 3px currentColor;
+            font-weight: 800;
+            text-shadow: 0 0 8px currentColor;
         }
         .log-warning { 
             color: var(--warning-neon); 
-            font-weight: 700;
-            text-shadow: 0 0 3px currentColor;
+            font-weight: 800;
+            text-shadow: 0 0 8px currentColor;
         }
         .log-error { 
             color: var(--danger-neon); 
-            font-weight: 700;
-            text-shadow: 0 0 3px currentColor;
+            font-weight: 800;
+            text-shadow: 0 0 8px currentColor;
         }
 
-        /* Responsive Currency Badge */
+        /* Enhanced Currency Badge */
         .nexus-currency {
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
+            background-size: 200% 200%;
             color: var(--bg-dark);
-            padding: 0.3rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
             font-weight: 900;
-            letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(0, 255, 136, 0.3);
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+            transition: all 0.4s ease;
             text-transform: uppercase;
+            animation: cinematicCurrency 4s ease-in-out infinite;
+        }
+
+        @keyframes cinematicCurrency {
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: scale(1);
+            }
+            50% { 
+                background-position: 100% 50%;
+                transform: scale(1.05);
+            }
         }
 
         .nexus-currency:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.5);
+            transform: scale(1.1) rotateZ(5deg);
+            box-shadow: 0 6px 25px rgba(0, 255, 136, 0.7);
         }
 
-        /* Responsive Table */
+        /* Enhanced Table */
         .nexus-table {
             color: var(--text-primary);
             background: transparent;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .nexus-table thead th {
             background: var(--glass-bg);
             border: none;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 0.8rem 0.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 1rem 0.8rem;
             color: var(--primary-neon);
             text-transform: uppercase;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             position: relative;
+            text-shadow: 0 0 8px var(--primary-neon);
+        }
+
+        .nexus-table thead th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
         }
 
         .nexus-table tbody tr {
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nexus-table tbody tr:hover {
-            background: rgba(0, 255, 136, 0.05);
-            transform: scale(1.005);
+            background: rgba(0, 255, 136, 0.08);
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
         }
 
         .nexus-table tbody td {
             border: none;
-            padding: 0.8rem 0.5rem;
+            padding: 1rem 0.8rem;
             vertical-align: middle;
         }
 
-        /* Responsive Compliance Indicators */
+        /* Enhanced Compliance Indicators */
         .nexus-indicator {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             display: inline-block;
-            margin-right: 8px;
-            transition: all 0.3s ease;
+            margin-right: 10px;
+            transition: all 0.4s ease;
             position: relative;
             flex-shrink: 0;
         }
 
+        .nexus-indicator::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, currentColor, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: cinematicIndicatorRing 4s linear infinite;
+        }
+
+        @keyframes cinematicIndicatorRing {
+            0% { transform: rotate(0deg); opacity: 0; }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { transform: rotate(360deg); opacity: 0; }
+        }
+
         .indicator-compliant {
             background: var(--primary-neon);
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-            animation: compliant-pulse 3s infinite;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+            animation: cinematicCompliantPulse 4s infinite;
+        }
+
+        .indicator-compliant::before {
+            opacity: 1;
         }
 
         .indicator-pending {
             background: var(--warning-neon);
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-            animation: pending-pulse 2s infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+            animation: cinematicPendingPulse 3s infinite;
         }
 
         .indicator-failed {
             background: var(--danger-neon);
-            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.7);
         }
 
-        @keyframes compliant-pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.8); }
+        @keyframes cinematicCompliantPulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(0, 255, 136, 1);
+                transform: scale(1.2);
+            }
         }
 
-        @keyframes pending-pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); }
+        @keyframes cinematicPendingPulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(255, 255, 0, 1);
+                transform: scale(1.15);
+            }
         }
 
-        /* Responsive Loading Animation */
+        /* Enhanced Loading Animation */
         .nexus-loader {
-            height: 3px;
+            height: 4px;
             background: var(--bg-darker);
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             position: relative;
         }
@@ -833,31 +1146,46 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), transparent);
-            animation: nexus-load 2s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), var(--accent-neon), var(--purple-neon), transparent);
+            animation: cinematicLoad 3s ease-in-out infinite;
         }
 
-        @keyframes nexus-load {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        @keyframes cinematicLoad {
+            0% { left: -100%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
         }
 
-        /* Responsive Section Headers */
+        /* Enhanced Section Headers */
         .section-header {
-            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
+            background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon), var(--purple-neon));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
+            font-size: 1rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            animation: cinematicHeader 4s ease-in-out infinite;
+        }
+
+        @keyframes cinematicHeader {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: brightness(1);
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: brightness(1.3);
+            }
         }
 
         /* Mobile-First Responsive Design */
         @media (max-width: 1200px) {
-            .container {
-                max-width: 100%;
+            .container-fluid {
                 padding-left: 15px;
                 padding-right: 15px;
             }
@@ -878,16 +1206,20 @@
             }
             
             .metric-value {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .metric-icon {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 margin-bottom: 0.6rem;
             }
             
             .section-header {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
+            }
+            
+            .nexus-console {
+                height: 300px;
             }
         }
 
@@ -922,9 +1254,107 @@
                 margin-right: 0;
             }
             
-            .container {
+            .container-fluid {
                 padding-left: 10px;
                 padding-right: 10px;
+            }
+            
+            .metric-display {
+                padding: 1rem 0.6rem;
+            }
+            
+            .metric-value {
+                font-size: 1.8rem;
+            }
+            
+            .metric-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .metric-label {
+                font-size: 0.7rem;
+                letter-spacing: 0.8px;
+            }
+            
+            .flow-step {
+                width: 38px;
+                height: 38px;
+                font-size: 0.85rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .nexus-console {
+                height: 280px;
+                font-size: 0.75rem;
+            }
+            
+            .console-header {
+                height: 40px;
+                padding: 0 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .nexus-dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .nexus-table {
+                font-size: 0.8rem;
+            }
+            
+            .nexus-table th,
+            .nexus-table td {
+                padding: 0.8rem 0.4rem;
+            }
+            
+            .holo-tooltip {
+                font-size: 0.7rem;
+                padding: 8px 12px;
+                white-space: normal;
+                max-width: 220px;
+                bottom: 115%;
+            }
+            
+            .section-header {
+                font-size: 0.85rem;
+            }
+            
+            .nexus-card {
+                border-radius: 12px;
+                margin-bottom: 1rem;
+            }
+            
+            .neon-badge {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .nexus-currency {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 0.95rem;
+            }
+            
+            .lang-btn {
+                padding: 3px 5px;
+                font-size: 0.65rem;
+            }
+            
+            .nexus-flag {
+                width: 14px;
+                height: 9px;
+            }
+            
+            .container-fluid {
+                padding-left: 8px;
+                padding-right: 8px;
             }
             
             .metric-display {
@@ -937,19 +1367,18 @@
             
             .metric-icon {
                 font-size: 1.6rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.4rem;
             }
             
             .metric-label {
                 font-size: 0.65rem;
-                letter-spacing: 0.5px;
             }
             
             .flow-step {
-                width: 35px;
-                height: 35px;
-                font-size: 0.8rem;
-                margin-bottom: 0.6rem;
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+                margin-bottom: 0.5rem;
             }
             
             .nexus-console {
@@ -958,7 +1387,7 @@
             }
             
             .console-header {
-                height: 30px;
+                height: 35px;
                 padding: 0 0.8rem;
                 font-size: 0.7rem;
             }
@@ -980,18 +1409,12 @@
             .holo-tooltip {
                 font-size: 0.65rem;
                 padding: 6px 10px;
-                white-space: normal;
                 max-width: 200px;
-                bottom: 120%;
             }
             
             .section-header {
                 font-size: 0.8rem;
-            }
-            
-            .nexus-card {
-                border-radius: 10px;
-                margin-bottom: 0.8rem;
+                letter-spacing: 0.5px;
             }
             
             .neon-badge {
@@ -1002,97 +1425,6 @@
             .nexus-currency {
                 font-size: 0.65rem;
                 padding: 0.25rem 0.5rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 0.9rem;
-            }
-            
-            .lang-btn {
-                padding: 3px 5px;
-                font-size: 0.65rem;
-            }
-            
-            .nexus-flag {
-                width: 14px;
-                height: 9px;
-            }
-            
-            .container {
-                padding-left: 8px;
-                padding-right: 8px;
-            }
-            
-            .metric-display {
-                padding: 0.6rem 0.4rem;
-            }
-            
-            .metric-value {
-                font-size: 1.4rem;
-            }
-            
-            .metric-icon {
-                font-size: 1.4rem;
-                margin-bottom: 0.4rem;
-            }
-            
-            .metric-label {
-                font-size: 0.6rem;
-            }
-            
-            .flow-step {
-                width: 30px;
-                height: 30px;
-                font-size: 0.7rem;
-                margin-bottom: 0.5rem;
-            }
-            
-            .nexus-console {
-                height: 220px;
-                font-size: 0.65rem;
-            }
-            
-            .console-header {
-                height: 28px;
-                padding: 0 0.6rem;
-                font-size: 0.65rem;
-            }
-            
-            .nexus-dot {
-                width: 7px;
-                height: 7px;
-            }
-            
-            .nexus-table {
-                font-size: 0.7rem;
-            }
-            
-            .nexus-table th,
-            .nexus-table td {
-                padding: 0.5rem 0.2rem;
-            }
-            
-            .holo-tooltip {
-                font-size: 0.6rem;
-                padding: 5px 8px;
-                max-width: 180px;
-            }
-            
-            .section-header {
-                font-size: 0.75rem;
-                letter-spacing: 0.3px;
-            }
-            
-            .neon-badge {
-                font-size: 0.55rem;
-                padding: 0.2rem 0.4rem;
-            }
-            
-            .nexus-currency {
-                font-size: 0.6rem;
-                padding: 0.2rem 0.4rem;
             }
             
             .nexus-indicator {
@@ -1102,72 +1434,25 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .navbar-brand {
-                font-size: 0.85rem;
-            }
-            
-            .language-switcher {
-                gap: 2px;
-            }
-            
-            .lang-btn {
-                padding: 2px 4px;
-            }
-            
-            .nexus-flag {
-                width: 12px;
-                height: 8px;
-            }
-            
-            .metric-value {
-                font-size: 1.2rem;
-            }
-            
-            .metric-icon {
-                font-size: 1.2rem;
-            }
-            
-            .flow-step {
-                width: 28px;
-                height: 28px;
-                font-size: 0.65rem;
-            }
-            
-            .nexus-console {
-                height: 200px;
-                font-size: 0.6rem;
-            }
-            
-            .console-header {
-                height: 25px;
-                font-size: 0.6rem;
-            }
-            
-            .section-header {
-                font-size: 0.7rem;
-            }
-        }
-
         /* Scroll Bar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
             background: var(--bg-darker);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(45deg, var(--primary-neon), var(--accent-neon));
-            border-radius: 3px;
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(45deg, var(--accent-neon), var(--primary-neon));
-            box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
 
         /* Ensure no overflow on small screens */
@@ -1190,7 +1475,7 @@
     </style>
 </head>
 <body>
-    <!-- Background -->
+    <!-- Cinematic Background -->
     <div class="nexus-bg"></div>
     <div class="particles" id="particles"></div>
 
@@ -1204,7 +1489,7 @@
             <div class="navbar-nav ms-auto">
                 <div class="language-switcher">
                     <button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/57dcf882-bc70-43b8-95c2-5036fef5e2e7.png" alt="British Union Jack flag with red, white and blue crosses on blue background" class="nexus-flag">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d862dab1-3585-476b-8a05-85b58049b910.png" alt="British Union Jack flag with red, white and blue crosses on blue background" class="nexus-flag">
                         <span>English</span>
                     </button>
                     <button class="lang-btn" id="btn-id" onclick="switchLanguage('id')">
@@ -1270,15 +1555,15 @@
         <div class="row g-2 mb-3">
             <div class="col-lg-8 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-2">
+                    <div class="card-header bg-transparent border-0 p-3">
                         <h6 class="mb-0 d-flex align-items-center section-header flex-wrap">
                             <i class="fas fa-credit-card me-2"></i>
                             <span data-lang="payment-flow" class="me-2">Live Payment Flow Testing</span>
                             <span id="currentMarket" data-lang="market-en" class="me-auto">Global Operations</span>
-                            <div class="nexus-loader" style="width: 80px; height: 3px;"></div>
+                            <div class="nexus-loader" style="width: 100px; height: 4px;"></div>
                         </h6>
                     </div>
-                    <div class="card-body p-2">
+                    <div class="card-body p-3">
                         <div class="flow-container">
                             <div class="row text-center g-1">
                                 <div class="col-2">
@@ -1327,17 +1612,17 @@
                         </div>
                         
                         <div class="mt-3">
-                            <h6 class="mb-2 section-header" data-lang="test-session">Live Test Session Details:</h6>
+                            <h6 class="mb-3 section-header" data-lang="test-session">Live Test Session Details:</h6>
                             <div class="row g-2">
                                 <div class="col-md-6 col-12">
-                                    <p class="mb-1 small"><strong data-lang="test-id">Test ID:</strong> <code class="text-primary" id="testId">GLOBAL_NEXUS_001</code></p>
-                                    <p class="mb-1 small"><strong data-lang="amount-label">Amount:</strong> <span class="text-success" id="testAmount">$2,500 USD</span></p>
-                                    <p class="mb-1 small"><strong data-lang="merchant-label">Merchant:</strong> <span id="merchantName">Shopee International</span></p>
+                                    <p class="mb-1"><strong data-lang="test-id">Test ID:</strong> <code class="text-primary" id="testId">GLOBAL_NEXUS_001</code></p>
+                                    <p class="mb-1"><strong data-lang="amount-label">Amount:</strong> <span class="text-success" id="testAmount">$2,500 USD</span></p>
+                                    <p class="mb-1"><strong data-lang="merchant-label">Merchant:</strong> <span id="merchantName">Shopee International</span></p>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <p class="mb-1 small"><strong data-lang="pair-label">Currency Pair:</strong> <span id="currencyPair">USD → Multi</span></p>
-                                    <p class="mb-1 small"><strong data-lang="rate-label">Exchange Rates:</strong> <span id="exchangeRate">Live market rates</span></p>
-                                    <p class="mb-1 small"><strong data-lang="status-label">Status:</strong> <span class="neon-badge badge-warning" data-lang="processing">Processing Gateway</span></p>
+                                    <p class="mb-1"><strong data-lang="pair-label">Currency Pair:</strong> <span id="currencyPair">USD → Multi</span></p>
+                                    <p class="mb-1"><strong data-lang="rate-label">Exchange Rates:</strong> <span id="exchangeRate">Live market rates</span></p>
+                                    <p class="mb-1"><strong data-lang="status-label">Status:</strong> <span class="neon-badge badge-warning" data-lang="processing">Processing Gateway</span></p>
                                 </div>
                             </div>
                         </div>
@@ -1347,18 +1632,18 @@
             
             <div class="col-lg-4 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-2">
+                    <div class="card-header bg-transparent border-0 p-3">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-globe-americas me-2"></i>
                             <span data-lang="market-coverage">Global Market Coverage</span>
                         </h6>
                     </div>
-                    <div class="card-body p-2">
-                        <div class="mb-2">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div class="card-body p-3">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-id me-2"></div>
-                                    <span data-lang="country-id" class="small">Indonesia</span>
+                                    <span data-lang="country-id">Indonesia</span>
                                 </span>
                                 <span class="nexus-currency">IDR</span>
                             </div>
@@ -1368,11 +1653,11 @@
                             <small class="text-success"><span data-lang="merchants-count">1,247 merchants</span> • <span data-lang="uptime">99.8%</span></small>
                         </div>
                         
-                        <div class="mb-2">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-vn me-2"></div>
-                                    <span data-lang="country-vn" class="small">Vietnam</span>
+                                    <span data-lang="country-vn">Vietnam</span>
                                 </span>
                                 <span class="nexus-currency">VND</span>
                             </div>
@@ -1382,11 +1667,11 @@
                             <small class="text-info"><span data-lang="merchants-count-vn">423 merchants</span> • <span data-lang="uptime-vn">97.2%</span></small>
                         </div>
                         
-                        <div class="mb-2">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="d-flex align-items-center">
                                     <div class="nexus-flag flag-ph me-2"></div>
-                                    <span data-lang="country-ph" class="small">Philippines</span>
+                                    <span data-lang="country-ph">Philippines</span>
                                 </span>
                                 <span class="nexus-currency">PHP</span>
                             </div>
@@ -1404,13 +1689,13 @@
         <div class="row g-2 mb-3">
             <div class="col-lg-6 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-2">
+                    <div class="card-header bg-transparent border-0 p-3">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-list-check me-2"></i>
                             <span data-lang="test-execution">Test Execution Matrix</span>
                         </h6>
                     </div>
-                    <div class="card-body p-2">
+                    <div class="card-body p-3">
                         <div class="table-responsive">
                             <table class="table nexus-table">
                                 <thead>
@@ -1459,49 +1744,49 @@
             
             <div class="col-lg-6 col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-2">
+                    <div class="card-header bg-transparent border-0 p-3">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-shield-virus me-2"></i>
                             <span data-lang="compliance-matrix">Compliance Matrix</span>
                         </h6>
                     </div>
-                    <div class="card-body p-2">
-                        <div class="mb-2 tooltip-container">
-                            <h6 class="d-flex align-items-center small">
+                    <div class="card-body p-3">
+                        <div class="mb-3 tooltip-container">
+                            <h6 class="d-flex align-items-center">
                                 <span class="nexus-indicator indicator-compliant"></span>
                                 <span data-lang="bank-indonesia">Bank Indonesia (BI)</span>
                             </h6>
-                            <p class="text-secondary mb-1 small" data-lang="bi-requirements">PCI DSS Level 1 • AML • ISO 27001</p>
+                            <p class="text-secondary mb-1" data-lang="bi-requirements">PCI DSS Level 1 • AML • ISO 27001</p>
                             <small class="text-success" data-lang="bi-status">Last audit: Jan 10, 2024 - Compliant</small>
                             <div class="holo-tooltip" data-lang="tooltip-bi">Indonesian banking regulations verified with enhanced security protocols</div>
                         </div>
                         
-                        <div class="mb-2 tooltip-container">
-                            <h6 class="d-flex align-items-center small">
+                        <div class="mb-3 tooltip-container">
+                            <h6 class="d-flex align-items-center">
                                 <span class="nexus-indicator indicator-compliant"></span>
                                 <span data-lang="state-bank-vietnam">State Bank of Vietnam (SBV)</span>
                             </h6>
-                            <p class="text-secondary mb-1 small" data-lang="sbv-requirements">Payment License • KYC • Cross-border</p>
+                            <p class="text-secondary mb-1" data-lang="sbv-requirements">Payment License • KYC • Cross-border</p>
                             <small class="text-success" data-lang="sbv-status">Last audit: Jan 8, 2024 - Verified</small>
                             <div class="holo-tooltip" data-lang="tooltip-sbv">Vietnamese banking integration protocols successfully implemented</div>
                         </div>
                         
-                        <div class="mb-2 tooltip-container">
-                            <h6 class="d-flex align-items-center small">
+                        <div class="mb-3 tooltip-container">
+                            <h6 class="d-flex align-items-center">
                                 <span class="nexus-indicator indicator-pending"></span>
                                 <span data-lang="bangko-sentral">Bangko Sentral (BSP)</span>
                             </h6>
-                            <p class="text-secondary mb-1 small" data-lang="bsp-requirements">E-Money License • Digital wallet</p>
+                            <p class="text-secondary mb-1" data-lang="bsp-requirements">E-Money License • Digital wallet</p>
                             <small class="text-warning" data-lang="bsp-status">Review pending - Expected: Jan 25, 2024</small>
                             <div class="holo-tooltip" data-lang="tooltip-bsp">Philippine central bank conducting security review</div>
                         </div>
                         
-                        <div class="mb-2 tooltip-container">
-                            <h6 class="d-flex align-items-center small">
+                        <div class="mb-3 tooltip-container">
+                            <h6 class="d-flex align-items-center">
                                 <span class="nexus-indicator indicator-compliant"></span>
                                 <span data-lang="international-standards">Global Standards</span>
                             </h6>
-                            <p class="text-secondary mb-1 small" data-lang="intl-requirements">ISO 27001 • SOC 2 • GDPR</p>
+                            <p class="text-secondary mb-1" data-lang="intl-requirements">ISO 27001 • SOC 2 • GDPR</p>
                             <small class="text-success" data-lang="intl-status">All certifications current</small>
                             <div class="holo-tooltip" data-lang="tooltip-intl">Global privacy standards maintained for international operations</div>
                         </div>
@@ -1510,17 +1795,17 @@
             </div>
         </div>
 
-        <!-- Responsive Console -->
+        <!-- Enhanced Console with Better Visibility -->
         <div class="row g-2">
             <div class="col-12">
                 <div class="nexus-card lang-switch">
-                    <div class="card-header bg-transparent border-0 p-2">
+                    <div class="card-header bg-transparent border-0 p-3">
                         <h6 class="mb-0 section-header">
                             <i class="fas fa-terminal me-2"></i>
                             <span data-lang="live-console">Advanced Test Console</span> - <span data-lang="selenium-grid">Selenium Grid Execution</span>
                         </h6>
                     </div>
-                    <div class="card-body p-2">
+                    <div class="card-body p-3">
                         <div class="nexus-console">
                             <div class="console-header">
                                 <div class="nexus-dots">
@@ -1528,19 +1813,19 @@
                                     <div class="nexus-dot dot-yellow"></div>
                                     <div class="nexus-dot dot-green"></div>
                                 </div>
-                                <span class="ms-2 text-muted small">Kredivo Nexus Terminal v3.2.1</span>
-                                <span class="ms-auto text-primary small">◉ LIVE</span>
+                                <span class="ms-3 console-title">Kredivo Nexus Terminal v3.2.1</span>
+                                <span class="ms-auto console-status">◉ LIVE GLOBAL</span>
                             </div>
                             <div class="console-content" id="nexusConsole">
-<span class="log-timestamp">[14:23:15]</span> <span class="log-info">NEXUS</span> <span data-lang="console-init">Initializing global payment test matrix</span><br>
-<span class="log-timestamp">[14:23:16]</span> <span class="log-info">SELENIUM</span> <span data-lang="console-webdriver">Multi-browser grid initialized - Chrome, Firefox, Edge, Safari</span><br>
-<span class="log-timestamp">[14:23:17]</span> <span class="log-info">NETWORK</span> <span data-lang="console-tunnel">Secure tunnel to Kredivo portal established</span><br>
-<span class="log-timestamp">[14:23:18]</span> <span class="log-success">AUTH</span> <span data-lang="console-auth">Multi-factor authentication verified - Test User GLOBAL_001</span><br>
-<span class="log-timestamp">[14:23:19]</span> <span class="log-info">PAYMENT</span> <span data-lang="console-payment">Initiating payment test of $2,500 USD</span><br>
-<span class="log-timestamp">[14:23:20]</span> <span class="log-info">FOREX</span> <span data-lang="console-forex">Real-time conversion: USD → IDR/VND/PHP</span><br>
-<span class="log-timestamp">[14:23:21]</span> <span class="log-info">GATEWAY</span> <span data-lang="console-gateway">Banking gateway response received</span><br>
-<span class="log-timestamp">[14:23:22]</span> <span class="log-success">SUCCESS</span> <span data-lang="console-success">Payment processed successfully</span><br>
-<span class="log-warning">[14:23:23]</span> <span class="log-warning">NEXUS</span> <span data-lang="console-next">Initiating cross-browser validation...</span>
+<span class="log-timestamp">[14:23:15]</span> <span class="log-info">NEXUS</span> <span data-lang="console-init">Initializing global payment test matrix for international operations</span><br>
+<span class="log-timestamp">[14:23:16]</span> <span class="log-info">SELENIUM</span> <span data-lang="console-webdriver">Multi-browser grid initialized - Chrome v120, Firefox v118, Edge v119, Safari v16</span><br>
+<span class="log-timestamp">[14:23:17]</span> <span class="log-info">NETWORK</span> <span data-lang="console-tunnel">Secure tunnel to Kredivo global operations portal established</span><br>
+<span class="log-timestamp">[14:23:18]</span> <span class="log-success">AUTH</span> <span data-lang="console-auth">Enterprise multi-factor authentication verified - Test User GLOBAL_001</span><br>
+<span class="log-timestamp">[14:23:19]</span> <span class="log-info">PAYMENT</span> <span data-lang="console-payment">Initiating international payment test of $2,500 USD</span><br>
+<span class="log-timestamp">[14:23:20]</span> <span class="log-info">FOREX</span> <span data-lang="console-forex">Real-time multi-currency conversion: USD → IDR/VND/PHP</span><br>
+<span class="log-timestamp">[14:23:21]</span> <span class="log-info">GATEWAY</span> <span data-lang="console-gateway">International banking gateway response received</span><br>
+<span class="log-timestamp">[14:23:22]</span> <span class="log-success">SUCCESS</span> <span data-lang="console-success">Payment processed successfully across all markets</span><br>
+<span class="log-warning">[14:23:23]</span> <span class="log-warning">NEXUS</span> <span data-lang="console-next">Initiating cross-browser validation sequence...</span>
                             </div>
                         </div>
                     </div>
@@ -1637,15 +1922,15 @@
                 'tooltip-bsp': 'Philippine central bank security review',
                 'tooltip-intl': 'Global privacy standards maintained',
                 // Console messages
-                'console-init': 'Initializing global payment test matrix',
-                'console-webdriver': 'Multi-browser grid initialized - Chrome, Firefox, Edge, Safari',
-                'console-tunnel': 'Secure tunnel to Kredivo portal established',
-                'console-auth': 'Multi-factor authentication verified - Test User GLOBAL_001',
-                'console-payment': 'Initiating payment test of $2,500 USD',
-                'console-forex': 'Real-time conversion: USD → IDR/VND/PHP',
-                'console-gateway': 'Banking gateway response received',
-                'console-success': 'Payment processed successfully',
-                'console-next': 'Initiating cross-browser validation...'
+                'console-init': 'Initializing global payment test matrix for international operations',
+                'console-webdriver': 'Multi-browser grid initialized - Chrome v120, Firefox v118, Edge v119, Safari v16',
+                'console-tunnel': 'Secure tunnel to Kredivo global operations portal established',
+                'console-auth': 'Enterprise multi-factor authentication verified - Test User GLOBAL_001',
+                'console-payment': 'Initiating international payment test of $2,500 USD',
+                'console-forex': 'Real-time multi-currency conversion: USD → IDR/VND/PHP',
+                'console-gateway': 'International banking gateway response received',
+                'console-success': 'Payment processed successfully across all markets',
+                'console-next': 'Initiating cross-browser validation sequence...'
             },
             id: {
                 'title': 'Platform Pengujian Pembayaran Kredivo Nexus',
@@ -1701,7 +1986,15 @@
                 'bangko-sentral': 'Bangko Sentral (BSP)',
                 'international-standards': 'Standar Global',
                 'live-console': 'Konsol Tes Lanjutan',
-                'selenium-grid': 'Eksekusi Grid Selenium'
+                'selenium-grid': 'Eksekusi Grid Selenium',
+                'bi-requirements': 'PCI DSS Level 1 • AML • ISO 27001',
+                'sbv-requirements': 'Lisensi Pembayaran • KYC • Lintas batas',
+                'bsp-requirements': 'Lisensi E-Money • Dompet digital',
+                'intl-requirements': 'ISO 27001 • SOC 2 • GDPR',
+                'bi-status': 'Audit terakhir: 10 Jan 2024 - Patuh',
+                'sbv-status': 'Audit terakhir: 8 Jan 2024 - Terverifikasi',
+                'bsp-status': 'Tinjauan tertunda - Diperkirakan: 25 Jan 2024',
+                'intl-status': 'Semua sertifikasi terkini'
             },
             vn: {
                 'title': 'Nền tảng Kiểm thử Thanh toán Kredivo Nexus',
@@ -1908,60 +2201,71 @@
             const timestamp = new Date().toTimeString().slice(0, 8);
             
             const consoleMessages = {
-                en: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Initializing global payment test matrix<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Authentication verified - User GLOBAL_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Testing $2,500 USD payment<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment processed successfully<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Cross-browser validation...`,
+                en: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Initializing global payment test matrix for international operations<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Enterprise multi-factor authentication verified - User GLOBAL_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Initiating international payment test of $2,500 USD<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Real-time multi-currency conversion: USD → IDR/VND/PHP<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment processed successfully across all markets<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Initiating cross-browser validation sequence...`,
                 
-                id: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Inisialisasi matriks tes pembayaran global<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Autentikasi terverifikasi - User ID_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Tes pembayaran 38,750,000 IDR<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Pembayaran berhasil diproses<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Validasi lintas browser...`,
+                id: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Inisialisasi matriks tes pembayaran global untuk operasi internasional<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Autentikasi multi-faktor enterprise terverifikasi - User ID_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Memulai tes pembayaran Indonesia 38,750,000 IDR<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Konversi multi-mata uang real-time: USD → IDR/VND/PHP<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Pembayaran diproses dengan sukses di semua pasar<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Memulai urutan validasi lintas browser...`,
                 
-                vn: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Khởi tạo ma trận kiểm thử thanh toán<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Xác thực thành công - User VN_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Kiểm thử 2,500,000 VND<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Thanh toán thành công<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Xác thực đa trình duyệt...`,
+                vn: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Khởi tạo ma trận kiểm thử thanh toán toàn cầu cho hoạt động quốc tế<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Xác thực đa yếu tố doanh nghiệp đã được xác minh - User VN_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Bắt đầu kiểm thử thanh toán Việt Nam 2,500,000 VND<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Chuyển đổi đa tiền tệ thời gian thực: USD → IDR/VND/PHP<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Thanh toán đã được xử lý thành công trên tất cả thị trường<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Bắt đầu chuỗi xác thực đa trình duyệt...`,
                 
-                ph: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Nagsisimula ng payment test matrix<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Authentication verified - User PH_001<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Testing 125,000 PHP payment<br>
-<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment successful<br>
-<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Cross-browser validation...`
+                ph: `<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">NEXUS</span> Nagsisimula ng global payment test matrix para sa international operations<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">AUTH</span> Enterprise multi-factor authentication na-verify - User PH_001<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">PAYMENT</span> Nagsisimula ng Philippines payment test ng 125,000 PHP<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-info">FOREX</span> Real-time multi-currency conversion: USD → IDR/VND/PHP<br>
+<span class="log-timestamp">[${timestamp}]</span> <span class="log-success">SUCCESS</span> Payment na-process nang matagumpay sa lahat ng markets<br>
+<span class="log-warning">[${timestamp}]</span> <span class="log-warning">NEXUS</span> Nagsisimula ng cross-browser validation sequence...`
             };
             
             consoleContent.innerHTML = consoleMessages[lang];
         }
 
-        // Particle System
+        // Enhanced Particle System
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = window.innerWidth < 768 ? 20 : 40;
+            const particleCount = window.innerWidth < 768 ? 25 : 50;
+            
+            // Clear existing particles
+            particlesContainer.innerHTML = '';
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 25 + 20) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // Console Simulation
+        // Enhanced Console Simulation
         const nexusConsole = document.getElementById('nexusConsole');
         const nexusMessages = [
-            '<span class="log-timestamp">[14:23:27]</span> <span class="log-info">AI</span> Fraud detection optimization',
-            '<span class="log-timestamp">[14:23:28]</span> <span class="log-info">PERF</span> API analysis: 1.2s avg',
-            '<span class="log-timestamp">[14:23:29]</span> <span class="log-success">MERCHANT</span> Integration validated',
-            '<span class="log-timestamp">[14:23:30]</span> <span class="log-info">SECURITY</span> Encryption validation',
-            '<span class="log-timestamp">[14:23:31]</span> <span class="log-warning">ANOMALY</span> Pattern detected',
-            '<span class="log-timestamp">[14:23:32]</span> <span class="log-success">AI</span> Analysis complete',
-            '<span class="log-timestamp">[14:23:33]</span> <span class="log-info">REGULATORY</span> Compliance check',
-            '<span class="log-timestamp">[14:23:34]</span> <span class="log-success">COMPLIANCE</span> Requirements satisfied'
+            '<span class="log-timestamp">[14:23:27]</span> <span class="log-info">AI</span> Advanced fraud detection neural network optimization in progress',
+            '<span class="log-timestamp">[14:23:28]</span> <span class="log-info">PERF</span> API response time analysis: 1.2s average across 15+ international endpoints',
+            '<span class="log-timestamp">[14:23:29]</span> <span class="log-success">MERCHANT</span> Shopee global integration validation completed successfully',
+            '<span class="log-timestamp">[14:23:30]</span> <span class="log-info">SECURITY</span> Enhanced encryption validation initiated for international transactions',
+            '<span class="log-timestamp">[14:23:31]</span> <span class="log-warning">ANOMALY</span> Unusual transaction pattern detected - Machine learning model triggered',
+            '<span class="log-timestamp">[14:23:32]</span> <span class="log-success">AI</span> Pattern analysis complete - False positive rate: 0.02% (Optimal)',
+            '<span class="log-timestamp">[14:23:33]</span> <span class="log-info">REGULATORY</span> Multi-country compliance check initiated for all ASEAN markets',
+            '<span class="log-timestamp">[14:23:34]</span> <span class="log-success">COMPLIANCE</span> All regulatory requirements satisfied - Global grade security verified',
+            '<span class="log-timestamp">[14:23:35]</span> <span class="log-info">GRID</span> Cross-browser testing complete - Chrome, Firefox, Edge, Safari: 100% compatibility',
+            '<span class="log-timestamp">[14:23:36]</span> <span class="log-info">LOAD</span> Performance testing initiated - Simulating 15,000+ concurrent international users',
+            '<span class="log-timestamp">[14:23:37]</span> <span class="log-warning">TIMEOUT</span> Edge browser latency spike detected - Auto-retry mechanism activated',
+            '<span class="log-timestamp">[14:23:38]</span> <span class="log-success">RECOVERY</span> System auto-recovery successful - Full operational capacity restored'
         ];
 
         let nexusMessageIndex = 0;
@@ -1973,36 +2277,38 @@
             } else {
                 nexusMessageIndex = 0;
                 const lines = nexusConsole.innerHTML.split('<br>');
-                nexusConsole.innerHTML = lines.slice(-10).join('<br>');
+                nexusConsole.innerHTML = lines.slice(-12).join('<br>');
             }
-        }, 2500);
+        }, 3000);
 
-        // Metric Updates
+        // Enhanced Metric Updates
         setInterval(() => {
             const passedTests = document.getElementById('passedTests');
             const currentValue = parseInt(passedTests.textContent.replace(',', ''));
-            const increment = Math.floor(Math.random() * 5) + 1;
+            const increment = Math.floor(Math.random() * 7) + 2;
             const newValue = currentValue + increment;
             
-            passedTests.style.transform = 'scale(1.1)';
+            passedTests.style.transform = 'scale(1.15) rotateY(10deg)';
+            passedTests.style.filter = 'brightness(1.5)';
             setTimeout(() => {
                 passedTests.textContent = newValue.toLocaleString();
-                passedTests.style.transform = 'scale(1)';
-            }, 200);
-        }, 7000);
+                passedTests.style.transform = 'scale(1) rotateY(0deg)';
+                passedTests.style.filter = 'brightness(1)';
+            }, 300);
+        }, 8000);
 
-        // Progress Bar Updates
+        // Enhanced Progress Bar Updates
         setInterval(() => {
             const progressBars = document.querySelectorAll('.nexus-progress-bar');
             progressBars.forEach((bar, index) => {
                 const currentWidth = parseInt(bar.style.width) || 50;
-                const variation = Math.floor(Math.random() * 6) - 3;
+                const variation = Math.floor(Math.random() * 8) - 4;
                 const newWidth = Math.max(40, Math.min(100, currentWidth + variation));
                 bar.style.width = newWidth + '%';
             });
-        }, 8000);
+        }, 10000);
 
-        // Flow Step Progression
+        // Enhanced Flow Step Progression
         setInterval(() => {
             const steps = document.querySelectorAll('.flow-step');
             const activeStep = document.querySelector('.flow-step.active');
@@ -2021,38 +2327,35 @@
                     else step.classList.add('pending');
                 });
             }
-        }, 5000);
+        }, 6000);
 
-        // Initialize System
+        // Initialize Enhanced System
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             
             // Set initial language to English
             switchLanguage('en');
             
-            // Card hover effects
+            // Enhanced card hover effects
             document.querySelectorAll('.nexus-card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.filter = 'brightness(1.05)';
+                    this.style.filter = 'brightness(1.1) saturate(1.3)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.filter = 'brightness(1)';
+                    this.style.filter = 'brightness(1) saturate(1)';
                 });
             });
 
-            // Handle window resize
+            // Handle window resize for particles
             window.addEventListener('resize', function() {
-                // Recreate particles on resize
-                const particlesContainer = document.getElementById('particles');
-                particlesContainer.innerHTML = '';
                 createParticles();
             });
         });
 
-        // Error Handling
+        // Enhanced Error Handling
         window.addEventListener('error', function(e) {
-            console.log('System error handled:', e.message);
+            console.log('Enhanced system error handled:', e.message);
         });
     </script>
 </body>
